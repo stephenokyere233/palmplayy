@@ -14,23 +14,23 @@ const Searchbar = () => {
     setOptions((prev) => !prev);
   };
   return (
-    <div className="sticky top-0 flex h-20 w-full items-center justify-between border-2 bg-[#5564DF] px-4">
+    <div className="sticky top-0 flex h-20 w-full items-center justify-between  bg-[#5564DF] px-4">
       <div className=" flex items-center">
         <FaSearch className="text-xl text-white " />{" "}
         <input
           type="search"
           placeholder="Search"
-          className="h-10 w-[60vw] border-2 bg-transparent indent-2 outline-none"
+          className="h-10 w-[60vw] bg-transparent indent-2 outline-none"
         />
       </div>
 
       {session ? (
         <Image
           onClick={toggle}
-          className="flex h-16 w-16 items-center justify-center rounded-full object-contain"
+          className="flex h-14 w-14 items-center justify-center rounded-full object-contain"
           src={session.user.image}
-          width={200}
-          height={200}
+          width={160}
+          height={160}
           alt="avatar"
           priority
         />

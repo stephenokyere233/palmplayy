@@ -1,6 +1,8 @@
 import React from "react";
+import Controller from "../controls/Controller";
 import Searchbar from "../searchbar/Searchbar";
 import Sidebar from "../sidebar/Sidebar";
+
 
 const Layout = ({ children }) => {
   const styles = {
@@ -13,12 +15,13 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <Sidebar />
-      <div className="col-span-5 md:col-span-3 lg:col-span-4  flex grid-flow-col flex-col ">
+      <div className="col-span-5 flex grid-flow-col  flex-col md:col-span-3 lg:col-span-4 ">
         <Searchbar />
-        <div className=" border-red-500 flex-1 scroll-mb-[3em] overflow-y-scroll border">
+        <div className="h-[88vh] overflow-y-scroll pb-20 scrollbar-hide">
           {children}
         </div>
       </div>
+      <Controller />
     </div>
   );
 };
