@@ -14,7 +14,7 @@ const Searchbar = () => {
     setOptions((prev) => !prev);
   };
   return (
-    <div className="flex h-20 w-full items-center justify-between border-2 px-4">
+    <div className="sticky top-0 flex h-20 w-full items-center justify-between border-2 bg-[#5564DF] px-4">
       <div className=" flex items-center">
         <FaSearch className="text-xl text-white " />{" "}
         <input
