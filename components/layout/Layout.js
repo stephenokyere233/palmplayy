@@ -1,18 +1,22 @@
-import React from 'react'
-import Sidebar from '../sidebar/Sidebar';
+import React from "react";
+import Searchbar from "../searchbar/Searchbar";
+import Sidebar from "../sidebar/Sidebar";
 
-const Layout = ({children}) => {
-    const styles = {
-      container:'grid min-h-screen border-2 border-red-500 w-screen grid-cols-4 lg:grid-cols-5 bg-[#5564DF] text-white',
-    };
+const Layout = ({ children }) => {
+  const styles = {
+    container:
+      "grid min-h-screen w-screen grid-cols-4 lg:grid-cols-5 bg-[#5564DF] text-white",
+    glass:
+      "bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-60  bg-[#5564DF] ",
+  };
 
   return (
     <div className={styles.container}>
-        <Sidebar/>
+      <Sidebar />
+      <Searchbar/>
       {children}
     </div>
-  )
-}
+  );
+};
 
-
-export default Layout
+export default Layout;
