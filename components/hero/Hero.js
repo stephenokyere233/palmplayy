@@ -1,6 +1,7 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import Dropdown from "../dropdown/Dropdown";
+import CardContainer from "../cardcontainer/CardContainer";
 
 const Hero = () => {
   const { data: session } = useSession();
@@ -39,7 +40,8 @@ const Hero = () => {
         <Dropdown/>
       </header>
       <section className="px-2">
-      
+        
+      <CardContainer/>
       </section>
     </div>
   );

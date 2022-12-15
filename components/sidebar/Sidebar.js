@@ -18,12 +18,12 @@ const Sidebar = () => {
     { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
   ];
   return (
-    <div className="hidden h-[100vh] overflow-y-scroll scrollbar-hide bg-[#111221] md:block">
+    <div className="hidden h-[100vh] overflow-y-scroll bg-[#251749] scrollbar-hide md:block">
       <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
         <FaPlay className="m-2  text-3xl" />
         PALMPLAYY
       </h2>
-      <nav className="pb-20 px-8">
+      <nav className="px-8 pb-20">
         <div>
           <span className={styles.title}>title</span>
           <section>

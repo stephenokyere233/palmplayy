@@ -9,7 +9,7 @@ const Dropdown = () => {
     setMenu(prev=>!prev)
   }
   //   console.log(genres);
-  const glass = `bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-10 bg-gray-300 `;
+  const glass = `bg-clip-padding z-10 backdrop-filter backdrop-blur-2xl bg-opacity-10 bg-gray-300 `;
   return (
     <div className="rounded-lg md:hidden ">
       <button
