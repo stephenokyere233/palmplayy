@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   };
   const background = {
     backgroundColor: `#242222`,
-    backgroundImage: `linear-gradient(225deg, #242222 0%, #784BA0 33%, #11476f 66%, #0e0d0d 100%)`,
+    backgroundImage: `linear-gradient(225deg, #242222 0%, #784BA0 33%, #0983da 66%, #0e0d0d 100%)`,
   };
 
   return (
