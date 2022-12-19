@@ -10,7 +10,12 @@ import {
 } from "react-icons/hi";
 
 const Sidebar = () => {
-  console.log(genres);
+  // console.log(genres);
+  // bg-[#5564DF]
+  // bg-[#473198]  
+  const glass =
+    // bg-[#473198]
+    "bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20 bg-[#473198]  ";
   const links = [
     { name: "Discover", to: "/", icon: HiOutlineHome },
     { name: "Around You", to: "/around-you", icon: HiOutlinePhotograph },
@@ -18,7 +23,9 @@ const Sidebar = () => {
     { name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
   ];
   return (
-    <div className="hidden h-[100vh] overflow-y-scroll bg-[#251749] scrollbar-hide md:block">
+    <div
+      className={`hidden h-[100vh] overflow-y-scroll ${glass} scrollbar-hide md:block`}
+    >
       <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
         <FaPlay className="m-2  text-3xl" />
         PALMPLAYY
