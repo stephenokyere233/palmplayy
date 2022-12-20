@@ -13,28 +13,28 @@ const Load = () => {
     //   <span className="animate-pulse-lg duration-2s delay-0.8s h-40 w-6 rounded-lg bg-red-600"></span>
     //   <span className="animate-pulse-lg duration-2s delay-1s h-40 w-6 rounded-lg bg-yellow-600"></span>
     // </div>
-    <div className="flex h-[70vh] rotate-180 items-center justify-center">
+    <div className="flex h-[65vh] rotate-180 items-center justify-center">
       {/* <section className="flex h-40 justify-center"> */}
-        <span
-          style={{ animationDelay: ".2s" }}
-          className="mr-2 w-[36px]  animate-loading rounded-md bg-yellow-400"
-        ></span>
-        <span
-          style={{ animationDelay: ".4s" }}
-          className="mr-2 w-[36px] animate-loading rounded-md bg-teal-500"
-        ></span>
-        <span
-          style={{ animationDelay: ".6s" }}
-          className="mr-2 w-[36px] animate-loading rounded-md  bg-blue-600"
-        ></span>
-        <span
-          style={{ animationDelay: ".8s" }}
-          className="mr-2 w-[36px] animate-loading rounded-md bg-red-600"
-        ></span>
-        <span
-          style={{ animationDelay: "1s" }}
-          className="mr-2  w-[36px] animate-loading rounded-md bg-yellow-400"
-        ></span>
+      <span
+        style={{ animationDelay: ".2s" }}
+        className="mr-2 w-[36px]  animate-loading rounded-md bg-[#3A0CA3]"
+      ></span>
+      <span
+        style={{ animationDelay: ".4s" }}
+        className="mr-2 w-[36px] animate-loading rounded-md bg-teal-500"
+      ></span>
+      <span
+        style={{ animationDelay: ".6s" }}
+        className="mr-2 w-[36px] animate-loading rounded-md  bg-blue-600"
+      ></span>
+      <span
+        style={{ animationDelay: ".8s" }}
+        className="mr-2 w-[36px] animate-loading rounded-md bg-red-600"
+      ></span>
+      <span
+        style={{ animationDelay: "1s" }}
+        className="mr-2  w-[36px] animate-loading rounded-md bg-[#3A0CA3]"
+      ></span>
       {/* </section> */}
     </div>
   );

@@ -12,6 +12,7 @@ const NotFound = () => {
         alt="error"
         width={380}
         height={200}
+        priority
       />
       <p className="text-xl font-semibold tracking-wider">
         Go to
