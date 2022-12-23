@@ -11,7 +11,7 @@ const Dropdown = () => {
   //   console.log(genres);
   const glass = `bg-clip-padding z-10 backdrop-filter backdrop-blur-2xl bg-opacity-10 bg-gray-300 `;
   return (
-    <div className="rounded-lg md:hidden ">
+    <div className="rounded-lg lg:hidden ">
       <button
       onClick={toggle}
         className={`${glass} flex items-center rounded-lg bg-[#111221] p-2 px-4 text-lg`}
