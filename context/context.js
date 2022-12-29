@@ -12,25 +12,25 @@ export const AppProvider = ({ children }) => {
   const [showGenre, setShowGenre] = useState(true);
   const [genreQuery, setGenreQuery] = useState("WORLDWIDE");
   const [controlData, setControlData] = useState({
-    image: `/public/vercel.svg`,
-    title: `Title`,
-    description: `description`,
+    image: "",
+    title: "",
+    description: "",
+    audio: "",
   });
 
   const [onTopArtistsPage, setOnTopArtistsPage] = useState(false);
 
   const isOnTopArtistsPage = () => {
     setOnTopArtistsPage(true);
-    console.log("is on artist page test")
+    console.log("is on artist page test");
   };
-
-
 
   const changeControls = (value) => {
     setControlData((prev) => ({
       image: value.image,
       title: value.title,
       description: value.description,
+      audio: value.audio,
     }));
   };
 
@@ -81,7 +81,7 @@ export const AppProvider = ({ children }) => {
         changeControls,
         isOnTopArtistsPage,
         setOnTopArtistsPage,
-        onTopArtistsPage
+        onTopArtistsPage,
       }}
     >
       {children}

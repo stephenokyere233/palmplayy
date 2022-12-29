@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import Image from "next/image";
-import Seekbar from "./Seekbar";
+import Seekbar from "./SeekBar";
 import VolumeBar from "./Volume";
 import { AppContext } from "../../context/context";
+import Player from "./Player";
 
 const Controller = () => {
   const { controlData, setControlData, changeControls } =
@@ -26,7 +27,7 @@ const Controller = () => {
         </div>
       </section>
       <section className="flex items-center">
-        <Seekbar />
+      <Player currentSong={controlData?.audio}/>
       </section>
       <section className=" hidden items-center md:flex">
         <VolumeBar />

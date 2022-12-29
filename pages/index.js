@@ -9,6 +9,8 @@ export default function Home() {
   const { genreQuery } = useContext(AppContext);
 
   const { data, isFetching, error } = useGetSongsByGenreQuery(genreQuery);
+
+  console.log(data)
   return (
     <>
       <Hero discover={data} isFetching={isFetching} error={error} />

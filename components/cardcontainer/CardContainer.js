@@ -16,6 +16,7 @@ const CardContainer = ({ data }) => {
             key={url}
             title={title}
             subtitle={subtitle}
+            audio={card?.hub?.actions[1]?.uri}
             coverart={card.images?.coverart}
           />
         );

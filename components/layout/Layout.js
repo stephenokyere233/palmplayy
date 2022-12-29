@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   }, [router, setMobileMenuOpen]);
 
     // const router = useRouter();
-    router.pathname === "/topartists" && isOnTopArtistsPage();
+    router.pathname === "/topartists" && isOnTopArtistsPage;
 
   return (
     <div className={styles.container}>

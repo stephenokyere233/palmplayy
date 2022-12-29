@@ -5,11 +5,16 @@ import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const Card = ({ coverart, title, subtitle, onClick }) => {
+const Card = ({ coverart, title, subtitle,audio, onClick }) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
   // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
-  const { controlData, setControlData, changeControls } =
-    useContext(AppContext);
+  const {
+    controlData,
+    setControlData,
+    changeControls,
+    isOnTopArtistsPage,
+    onTopArtistsPage,
+  } = useContext(AppContext);
   const [showPlay, setShowPlay] = useState(true);
   const [play, setPlay] = useState(false);
   const hoverEffect = () => {
@@ -41,6 +46,7 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
       title: subtitle,
       image: coverart,
       description: title,
+      audio:audio
     };
     changeControls(data);
     console.log(data);
@@ -52,7 +58,8 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
         onMouseLeave={showHover}
         onClick={
           router.pathname !== "/topartists"
-            ? getData
+            ? // !isOnTopArtistsPage
+              getData
             : () => {
                 console.log("click");
               }
