@@ -1,26 +1,25 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../context/context";
 import Controller from "../controls/Controller";
 import Searchbar from "../searchbar/Searchbar";
 import Sidebar from "../sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const toggle = () => {
-    setMobileMenuOpen((prev) => !prev);
-  };
+  const { mobileMenuOpen, setMobileMenuOpen, toggleMobileMenu } =
+    useContext(AppContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setMobileMenuOpen(false);
-  }, [router]);
-  
+  }, [router, setMobileMenuOpen]);
+
   return (
     <div className={styles.container}>
-      <Sidebar mobileMenuOpen={mobileMenuOpen} onClick={toggle} />
+      <Sidebar mobileMenuOpen={mobileMenuOpen} onClick={toggleMobileMenu} />
       <div className={styles.heroWrap}>
         <Searchbar />
-        {/* ${mobileMenuOpen ? "opacity-50" : ""} */}
         <div className={styles.childrenCon}>{children}</div>
       </div>
       <Controller />
@@ -30,14 +29,14 @@ const Layout = ({ children }) => {
 const styles = {
   container:
     "grid h-screen w-full select-none scrollbar-hide overflow-hidden grid-cols-5 bg-[#4A0D67] text-white",
-    glass:
+  glass:
     "bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-60  bg-[#5564DF] ",
-    heroWrap: "col-span-5  flex grid-flow-col flex-col lg:col-span-4 ",
-    childrenCon: `h-[88vh] overflow-y-scroll pb-20 scrollbar-hide`,
-  };
-  // const background = {
-    //   backgroundColor: `#242222`,
-  //   backgroundImage: `linear-gradient(225deg, #242222 0%, #784BA0 33%, #0983da 66%, #0e0d0d 100%)`,
-  // };
-  
-  export default Layout;
+  heroWrap: "col-span-5  flex grid-flow-col flex-col lg:col-span-4 ",
+  childrenCon: `h-[88vh] overflow-y-scroll pb-20 scrollbar-hide`,
+};
+// const background = {
+//   backgroundColor: `#242222`,
+//   backgroundImage: `linear-gradient(225deg, #242222 0%, #784BA0 33%, #0983da 66%, #0e0d0d 100%)`,
+// };
+
+export default Layout;

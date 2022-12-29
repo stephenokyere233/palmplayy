@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
 import PlayPause from "../controls/PlayPause";
+import { AppContext } from "../../context/context";
 const Card = ({ coverart, title, subtitle, onClick }) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
-  const [showPlay, setShowPlay] = useState(true);
-  const [play, setPlay] = useState(false);
+  const { showPlay, setShowPlay, play, setPlay } = useContext(AppContext);
+  // const [showPlay, setShowPlay] = useState(true);
+  // const [play, setPlay] = useState(false);
   const hoverEffect = () => {
     console.log("showingpaly");
     setShowPlay(false);
   };
-  const showHover=()=>{
-    setShowPlay(true)
-  }
+  const showHover = () => {
+    setShowPlay(true);
+  };
   const pause = () => {
     setPlay((prev) => !prev);
   };
@@ -21,13 +23,19 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
     // title: `font-semibold ${title.length > 18 && "truncate"}`,
     subtitle: ``,
-    card: `flex w-[180px] bg-black ${!showPlay&&'bg-gray-400'} flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
+    card: `flex w-[180px] bg-black ${
+      !showPlay && "bg-gray-400"
+    } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
   return (
     <>
-      <div onMouseOver={hoverEffect} onMouseLeave={showHover} className={[styles.glass, styles.card]}>
+      <div
+        onMouseOver={hoverEffect}
+        onMouseLeave={showHover}
+        className={[styles.glass, styles.card]}
+      >
         <div>
-          <PlayPause showPlay={showPlay} pause={pause} play={play}/>
+          <PlayPause showPlay={showPlay} pause={pause} play={play} />
           <Image
             src={coverart ? coverart : "/assets/cover.jpg"}
             width={200}
@@ -49,6 +57,5 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
     </>
   );
 };
-
 
 export default Card;
