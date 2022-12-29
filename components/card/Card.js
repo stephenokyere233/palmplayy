@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import PlayPause from "../controls/PlayPause";
 import { AppContext } from "../../context/context";
+import { useRouter } from "next/router";
 const Card = ({ coverart, title, subtitle, onClick }) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
   // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
@@ -17,6 +18,7 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
   const pause = () => {
     setPlay((prev) => !prev);
   };
+  const router = useRouter();
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
     textArea: `w-full items-start justify-start p-2 `,
@@ -46,10 +48,18 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
           />
         </div>
         <section className={styles.textArea}>
-          <h2 className={`font-semibold ${title.length > 18 && "truncate"}`}>
+          <h2
+            className={`font-semibold ${
+              router.pathname === "/topartists" && "hidden"
+            } ${title.length > 18 && "truncate"}`}
+          >
             {title}
           </h2>
-          <p className={`text-gray-400 ${subtitle.length > 20 && "truncate"}`}>
+          <p
+            className={`text-gray-400${
+              router.pathname === "/topartists" && "text-lg font-bold uppercase"
+            }  ${subtitle.length > 20 && "truncate"}`}
+          >
             {subtitle}
           </p>
         </section>

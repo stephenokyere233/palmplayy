@@ -1,10 +1,17 @@
-import React from 'react'
+import { useRouter } from "next/router";
+import React from "react";
 import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
 
-
-const PlayPause = ({play,pause,showPlay}) => {
+const PlayPause = ({ play, pause, showPlay }) => {
+  const router = useRouter();
+  const styles = {
+    icon: `text-4xl lg:text-5xl mx-2 text-green-600 bg-white rounded-full overflow-hidden`,
+    playOverlay: `inset-0 border ${
+      router.pathname === "/topartists" ? "hidden" : ""
+    } absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
+  };
   return (
-    <div className={`${styles.playOverlay} ${showPlay && 'hidden'}`}>
+    <div className={`${styles.playOverlay} ${showPlay && "hidden"}`}>
       {!play ? (
         <BsPlayCircleFill onClick={pause} className={styles.icon} />
       ) : (
@@ -12,9 +19,5 @@ const PlayPause = ({play,pause,showPlay}) => {
       )}
     </div>
   );
-}
-const styles = {
-  icon: `text-4xl lg:text-5xl mx-2 text-green-600 bg-white rounded-full overflow-hidden`,
-  playOverlay: `inset-0 border absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
 };
-export default PlayPause
+export default PlayPause;

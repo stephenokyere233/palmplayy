@@ -33,7 +33,7 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
       <div
         className={`${
           !mobileMenuOpen ? "hidden" : "absolute z-10 w-[300px]"
-        }  h-[100vh] overflow-y-scroll ${glass} scrollbar-hide lg:block`}
+        }  h-[100vh] overflow-y-scroll ${glass} z-40 scrollbar-hide lg:block`}
       >
         <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
           <FaPlay className="m-2  text-3xl" />
@@ -44,11 +44,7 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
             <span className={styles.title}>menu</span>
             <section>
               {links.map((genre) => (
-                <Link
-                  key={genre.toString}
-                  className={styles.link}
-                  href={genre.to}
-                >
+                <Link key={genre.name} className={styles.link} href={genre.to}>
                   <genre.icon className="mr-2" />
                   <p>{genre.name}</p>
                 </Link>
@@ -75,12 +71,12 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
       {!mobileMenuOpen ? (
         <BsMusicNoteList
           onClick={onClick}
-          className="absolute right-2 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
         />
       ) : (
         <FaTimes
           onClick={onClick}
-          className="absolute right-2 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
         />
       )}
     </>

@@ -6,13 +6,14 @@ const CardContainer = ({ data }) => {
   return (
     <div className={styles.wrapper}>
       {data.map((card) => {
-        const { title, subtitle, key } = card;
-        let id = crypto.randomUUID();
+        const { title, subtitle,url } = card;
+        // let id = crypto.randomUUID();
+        let num=1
         return (
           // <>
           <Card
             // onClick={() => check()}
-            key={id}
+            key={url}
             title={title}
             subtitle={subtitle}
             coverart={card.images?.coverart}

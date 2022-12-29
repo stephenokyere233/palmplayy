@@ -3,15 +3,15 @@ import React, { useContext } from "react";
 import Hero from "../components/hero/Hero";
 import Load from "../components/loader/Load";
 import { AppContext } from "../context/context";
-import { useGetSongsByGenreQuery} from "../store/services/shazamCore";
+import { useGetSongsByGenreQuery } from "../store/services/shazamCore";
 
 export default function Home() {
-  const {genreQuery}=useContext(AppContext)
-  const { data, isFetching, error } = useGetSongsByGenreQuery(genreQuery);
+  const { genreQuery } = useContext(AppContext);
 
+  const { data, isFetching, error } = useGetSongsByGenreQuery(genreQuery);
   return (
     <>
-      <Hero discover={data} isFetching={isFetching} error={error}/>
+      <Hero discover={data} isFetching={isFetching} error={error} />
     </>
   );
 }
