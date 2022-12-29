@@ -21,7 +21,7 @@ const TrackDetails = () => {
         <h3 className={`text-lg font-bold ${title.length > 20 && "truncate"}`}>
           {title}
         </h3>
-        <p className={description.length > 10 && "truncate overflow-hidden"}>{description}</p>
+        <p className={`w-[320px]  ${description.length > 20 && "truncate"}`}>{description}</p>
       </div>
     </section>
   );

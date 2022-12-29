@@ -11,6 +11,8 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
   const {
     controlData,
     setControlData,
+    hideController,
+    setShowControl,
     changeControls,
     isOnTopArtistsPage,
     onTopArtistsPage,
@@ -48,6 +50,7 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
       description: title,
       audio:audio
     };
+    setShowControl(true)
     changeControls(data);
     console.log(data);
   };

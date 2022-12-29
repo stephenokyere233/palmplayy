@@ -7,8 +7,6 @@ const CardContainer = ({ data }) => {
     <div className={styles.wrapper}>
       {data.map((card) => {
         const { title, subtitle,url } = card;
-        // let id = crypto.randomUUID();
-        let num=1
         return (
           // <>
           <Card
@@ -16,7 +14,7 @@ const CardContainer = ({ data }) => {
             key={url}
             title={title}
             subtitle={subtitle}
-            audio={card?.hub?.actions[1]?.uri}
+            // audio={card.hub?.actions[1]?.uri}
             coverart={card.images?.coverart}
           />
         );

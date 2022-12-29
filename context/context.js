@@ -7,6 +7,7 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [showPlay, setShowPlay] = useState(true);
+  const [showControls, setShowControl] = useState(false);
   const [play, setPlay] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showGenre, setShowGenre] = useState(true);
@@ -19,6 +20,10 @@ export const AppProvider = ({ children }) => {
   });
 
   const [onTopArtistsPage, setOnTopArtistsPage] = useState(false);
+
+  const hideController=()=>{
+    setShowControl(true)
+  }
 
   const isOnTopArtistsPage = () => {
     setOnTopArtistsPage(true);
@@ -82,6 +87,9 @@ export const AppProvider = ({ children }) => {
         isOnTopArtistsPage,
         setOnTopArtistsPage,
         onTopArtistsPage,
+        showControls,
+        setShowControl,
+        hideController
       }}
     >
       {children}
