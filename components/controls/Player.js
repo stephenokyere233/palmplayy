@@ -4,7 +4,9 @@ import SeekBar from "./SeekBar";
 
 const Player = ({ currentSong }) => {
   return (
-    <div>
+   
+      <section className="flex flex-col items-center border">
+         
       {/* <audio src={currentSong} controls repeat="loop" autoPlay /> */}
       {/* <SeekBar /> */}
 
@@ -19,14 +21,15 @@ const Player = ({ currentSong }) => {
         />
         Your browser does not support the audio element.
       </audio> */}
-      <Controls />
-      <audio autoPlay>
-        <source src={currentSong} type="audio/aac" />
-        Your browser does not support the audio element.
-      </audio>
-      <SeekBar />
-      {/* <audio controls src="/public/music.mp3" /> */}
-    </div>
+        <Controls />
+        <audio autoPlay>
+          <source src={currentSong} type="audio/aac" />
+          Your browser does not support the audio element.
+        </audio>
+        <SeekBar />
+        {/* <audio controls src="/public/music.mp3" /> */}
+      </section>
+    
   );
 };
 
