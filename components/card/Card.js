@@ -4,9 +4,9 @@ import PlayPause from "../controls/PlayPause";
 import { AppContext } from "../../context/context";
 const Card = ({ coverart, title, subtitle, onClick }) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
-  const { showPlay, setShowPlay, play, setPlay } = useContext(AppContext);
-  // const [showPlay, setShowPlay] = useState(true);
-  // const [play, setPlay] = useState(false);
+  // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
+  const [showPlay, setShowPlay] = useState(true);
+  const [play, setPlay] = useState(false);
   const hoverEffect = () => {
     console.log("showingpaly");
     setShowPlay(false);

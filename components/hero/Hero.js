@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Dropdown from "../dropdown/Dropdown";
 import CardContainer from "../cardcontainer/CardContainer";
@@ -12,10 +12,12 @@ import { BsMusicNoteList } from "react-icons/bs";
 // import useOnlineStatus from "../../hooks/useOnlineStatus";
 // import {ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import GenreTags from "./GenreTags";
+import { AppContext } from "../../context/context";
 // import { Toast } from "react-toastify/dist/components";
 
-const Hero = ({ discover, isFetching, error}) => {
-
+const Hero = ({ discover, isFetching, error }) => {
+  const { showGenre, setShowGenre, hideGenreTags } = useContext(AppContext);
 
   const { data: session } = useSession();
   let username = "";
@@ -46,7 +48,15 @@ const Hero = ({ discover, isFetching, error}) => {
         ) : (
           <h2 className="">Welcome, have a good time 😉</h2>
         )}
+        <button
+          className="mx-6 rounded-md border p-1 text-lg
+        "
+          onClick={hideGenreTags}
+        >
+          {showGenre ? "Show Genres" : "Hide Genres"}
+        </button>
       </header>
+      <GenreTags show={showGenre} />
       <section className="px-2">
         {isFetching ? <Load /> : <CardContainer data={discover} />}
       </section>
@@ -54,12 +64,9 @@ const Hero = ({ discover, isFetching, error}) => {
   );
 };
 
-const styles={
-  wrapper:`flex justify-between p-2 px-4 text-xl font-semibold`
-}
+const styles = {
+  wrapper: `flex justify-between p-2 px-4 text-xl font-semibold`,
+};
 
 export default Hero;
 
-Hero.getInitialProps = async () => {
-  return { initialIsOnline: false };
-};

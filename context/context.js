@@ -8,7 +8,28 @@ export const AppProvider = ({ children }) => {
   const [showPlay, setShowPlay] = useState(true);
   const [play, setPlay] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+  const [showGenre, setShowGenre] = useState(true);
+  const [genreQuery, setGenreQuery] = useState("WORLDWIDE");
+
+  const hideGenreTags = () => {
+    setShowGenre((prev) => !prev);
+  };
+
+  const newGenreQuery = (value) => {
+    setGenreQuery(value);
+    console.log(value);
+  };
+
+  const hoverEffect = () => {
+    console.log("showingpaly");
+    setShowPlay(false);
+  };
+  const showHover = () => {
+    setShowPlay(true);
+  };
+  const pause = () => {
+    setPlay((prev) => !prev);
+  };
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
@@ -23,6 +44,15 @@ export const AppProvider = ({ children }) => {
         mobileMenuOpen,
         setMobileMenuOpen,
         toggleMobileMenu,
+        hoverEffect,
+        showHover,
+        pause,
+        setShowGenre,
+        showGenre,
+        hideGenreTags,
+        genreQuery,
+        setGenreQuery,
+        newGenreQuery,
       }}
     >
       {children}
