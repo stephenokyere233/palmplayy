@@ -3,9 +3,13 @@ import Image from "next/image";
 import PlayPause from "../controls/PlayPause";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 const Card = ({ coverart, title, subtitle, onClick }) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
   // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
+  const { controlData, setControlData, changeControls } =
+    useContext(AppContext);
   const [showPlay, setShowPlay] = useState(true);
   const [play, setPlay] = useState(false);
   const hoverEffect = () => {
@@ -29,11 +33,31 @@ const Card = ({ coverart, title, subtitle, onClick }) => {
       !showPlay && "bg-gray-400"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
+  // const changeRoute = () => {
+  //   router.push("/artistsdetails");
+  // };
+  const getData = () => {
+    const data = {
+      title: subtitle,
+      image: coverart,
+      description: title,
+    };
+    changeControls(data);
+    console.log(data);
+  };
   return (
     <>
       <div
         onMouseOver={hoverEffect}
         onMouseLeave={showHover}
+        onClick={
+          router.pathname !== "/topartists"
+            ? getData
+            : () => {
+                console.log("click");
+              }
+        }
+        // onClick={router.pathname === "/topartists" && changeRoute}
         className={[styles.glass, styles.card]}
       >
         <div>

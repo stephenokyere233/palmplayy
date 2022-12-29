@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import Seekbar from "./Seekbar";
 import VolumeBar from "./Volume";
+import { AppContext } from "../../context/context";
 
 const Controller = () => {
+  const { controlData, setControlData, changeControls } =
+    useContext(AppContext);
   const glass = `bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-30 bg-[#251749] bg-gray-300 `;
   return (
     <div
@@ -11,21 +14,21 @@ const Controller = () => {
     >
       <section className="flex items-center">
         <Image
-          src="/vercel.svg"
+          src={controlData.image}
           width={20}
           height={20}
           alt="profile"
-          className="mr-4 h-16 w-16 rounded-full border-2 object-contain"
+          className="mr-4 h-16 w-16 rounded-full object-cover"
         />
         <div>
-          <h3 className="text-lg font-bold">Title</h3>
-          <p>Description</p>
+          <h3 className="text-lg font-bold">{controlData.title}</h3>
+          <p>{controlData.description}</p>
         </div>
       </section>
       <section className="flex items-center">
         <Seekbar />
       </section>
-      <section className=" items-center hidden md:flex">
+      <section className=" hidden items-center md:flex">
         <VolumeBar />
       </section>
     </div>

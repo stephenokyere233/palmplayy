@@ -7,13 +7,16 @@ import Sidebar from "../sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   const router = useRouter();
-  const { mobileMenuOpen, setMobileMenuOpen, toggleMobileMenu } =
+  const { mobileMenuOpen, setMobileMenuOpen, toggleMobileMenu,isOnTopArtistsPage } =
     useContext(AppContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setMobileMenuOpen(false);
   }, [router, setMobileMenuOpen]);
+
+    // const router = useRouter();
+    router.pathname === "/topartists" && isOnTopArtistsPage();
 
   return (
     <div className={styles.container}>

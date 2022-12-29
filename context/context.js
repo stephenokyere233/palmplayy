@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 import { createContext } from "react";
@@ -10,6 +11,28 @@ export const AppProvider = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showGenre, setShowGenre] = useState(true);
   const [genreQuery, setGenreQuery] = useState("WORLDWIDE");
+  const [controlData, setControlData] = useState({
+    image: `/public/vercel.svg`,
+    title: `Title`,
+    description: `description`,
+  });
+
+  const [onTopArtistsPage, setOnTopArtistsPage] = useState(false);
+
+  const isOnTopArtistsPage = () => {
+    setOnTopArtistsPage(true);
+    console.log("is on artist page test")
+  };
+
+
+
+  const changeControls = (value) => {
+    setControlData((prev) => ({
+      image: value.image,
+      title: value.title,
+      description: value.description,
+    }));
+  };
 
   const hideGenreTags = () => {
     setShowGenre((prev) => !prev);
@@ -53,6 +76,12 @@ export const AppProvider = ({ children }) => {
         genreQuery,
         setGenreQuery,
         newGenreQuery,
+        controlData,
+        setControlData,
+        changeControls,
+        isOnTopArtistsPage,
+        setOnTopArtistsPage,
+        onTopArtistsPage
       }}
     >
       {children}

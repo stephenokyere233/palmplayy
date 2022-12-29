@@ -32,8 +32,8 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
     <>
       <div
         className={`${
-          !mobileMenuOpen ? "hidden" : "absolute z-10 w-[300px]"
-        }  h-[100vh] overflow-y-scroll ${glass} z-40 scrollbar-hide lg:block`}
+          !mobileMenuOpen ? "hidden" : "absolute z-30 w-[300px]"
+        }  h-[100vh] overflow-y-scroll ${glass} scrollbar-hide lg:block`}
       >
         <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
           <FaPlay className="m-2  text-3xl" />
