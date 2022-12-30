@@ -14,8 +14,11 @@ import { AppContext } from "../../context/context";
 const Searchbar = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { searchTerm, setSearchTerm, changeSearchTerm } =
-    useContext(AppContext);
+  // const { searchTerm, setSearchTerm, changeSearchTerm } =
+  //   useContext(AppContext);
+
+    const [searchTerm,setSearchTerm]=useState("")
+    console.log(searchTerm)
 
   const [options, setOptions] = useState(true);
   const toggle = () => {
@@ -24,7 +27,7 @@ const Searchbar = () => {
   // const [searchTerm, setSearchTerm] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    changeSearchTerm(e.target.value);
+    setSearchTerm(e.target.value);
     router.push(`/search/${searchTerm}`);
   };
 
