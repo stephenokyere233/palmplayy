@@ -10,7 +10,6 @@ export default function Home() {
 
   const { data, isFetching, error } = useGetSongsByGenreQuery(genreQuery);
 
-  console.log(data)
   return (
     <>
       <Hero discover={data} isFetching={isFetching} error={error} />
