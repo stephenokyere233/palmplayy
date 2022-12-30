@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
-import { genres } from "../../constants/genres";
+// import { genres } from "../../constants/genres";
 import Link from "next/link";
 import {
   HiOutlineHome,
@@ -9,11 +9,10 @@ import {
   HiOutlineUserGroup,
 } from "react-icons/hi";
 import { BsMusicNoteList } from "react-icons/bs";
-import {FaTimes} from 'react-icons/fa'
+import { FaTimes } from "react-icons/fa";
 // import { useRouter } from "next/router";
 
-
-const Sidebar = ({mobileMenuOpen,onClick}) => {
+const Sidebar = ({ mobileMenuOpen, onClick }) => {
   // const router = useRouter();
 
   // console.log(genres);
@@ -28,13 +27,12 @@ const Sidebar = ({mobileMenuOpen,onClick}) => {
     { name: "Top Artists", to: "/topartists", icon: HiOutlineUserGroup },
     { name: "Top Charts", to: "/topcharts", icon: HiOutlineHashtag },
   ];
-    
 
   return (
     <>
       <div
         className={`${
-          !mobileMenuOpen ? "hidden" : "z-10 w-[300px] absolute"
+          !mobileMenuOpen ? "hidden" : "absolute z-30 w-[300px]"
         }  h-[100vh] overflow-y-scroll ${glass} scrollbar-hide lg:block`}
       >
         <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
@@ -43,20 +41,16 @@ const Sidebar = ({mobileMenuOpen,onClick}) => {
         </h2>
         <nav className="px-8 pb-20">
           <div>
-            <span className={styles.title}>title</span>
+            <span className={styles.title}>menu</span>
             <section>
               {links.map((genre) => (
-                <Link
-                  key={genre.toString}
-                  className={styles.link}
-                  href={genre.to}
-                >
+                <Link key={genre.name} className={styles.link} href={genre.to}>
                   <genre.icon className="mr-2" />
                   <p>{genre.name}</p>
                 </Link>
               ))}
             </section>
-            <section>
+            {/* <section>
               <span className={styles.title}>title</span>
               {genres.map((genre) => (
                 <Link
@@ -68,7 +62,7 @@ const Sidebar = ({mobileMenuOpen,onClick}) => {
                   <p>{genre.title}</p>
                 </Link>
               ))}
-            </section>
+            </section> */}
           </div>
         </nav>
       </div>
@@ -77,12 +71,12 @@ const Sidebar = ({mobileMenuOpen,onClick}) => {
       {!mobileMenuOpen ? (
         <BsMusicNoteList
           onClick={onClick}
-          className="absolute right-2 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
         />
       ) : (
         <FaTimes
           onClick={onClick}
-          className="absolute right-2 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
         />
       )}
     </>

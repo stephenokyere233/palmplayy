@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <div className="flex h-[75vh] flex-col items-center justify-center">
+    <div className={styles.wrapper}>
       <Image
         className=""
         src={"/assets/error.png"}
@@ -14,7 +14,7 @@ const NotFound = () => {
         height={200}
         priority
       />
-      <p className="text-xl font-semibold tracking-wider">
+      <p className={styles.redirect}>
         Go to
         <Link className="text-green-400" href={"/"}>
           {" "}
@@ -23,6 +23,11 @@ const NotFound = () => {
       </p>
     </div>
   );
+};
+
+const styles = {
+  wrapper: `flex h-[75vh] flex-col items-center justify-center`,
+  redirect: `text-xl font-semibold tracking-wider`,
 };
 
 export default NotFound;

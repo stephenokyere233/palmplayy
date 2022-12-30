@@ -1,61 +1,103 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
-import { BsPlayCircleFill, BsPauseCircleFill } from "react-icons/bs";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-const Card = ({ coverart, title, subtitle, onClick }) => {
-  // const desc = `lorem lorem loremlorem lorem loremlorem lorem lorem`;
-  const glass = `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `;
-  const [hoverPlay, setHoverPlay] = useState(true);
+import PlayPause from "../controls/PlayPause";
+import { AppContext } from "../../context/context";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+const Card = ({ coverart, title, subtitle,audio, onClick }) => {
+  // const [hoverPlay, setHoverPlay] = useState(true);
+  // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
+  const {
+    controlData,
+    setControlData,
+    hideController,
+    setShowControl,
+    changeControls,
+    isOnTopArtistsPage,
+    onTopArtistsPage,
+  } = useContext(AppContext);
+  const [showPlay, setShowPlay] = useState(true);
   const [play, setPlay] = useState(false);
-  const showPlay = () => {
+  const hoverEffect = () => {
     console.log("showingpaly");
-    setHoverPlay(false);
+    setShowPlay(false);
+  };
+  const showHover = () => {
+    setShowPlay(true);
   };
   const pause = () => {
-    // console.log("paused");
-    setPlay(prev=>!prev);
+    setPlay((prev) => !prev);
+  };
+  const router = useRouter();
+  const styles = {
+    glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
+    textArea: `w-full items-start justify-start p-2 `,
+    image: ` h-[170px] w-full  rounded-lg bg-cover`,
+    // title: `font-semibold ${title.length > 18 && "truncate"}`,
+    subtitle: ``,
+    card: `flex w-[180px] bg-black ${
+      !showPlay && "bg-gray-400"
+    } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
+  };
+  // const changeRoute = () => {
+  //   router.push("/artistsdetails");
+  // };
+  const getData = () => {
+    const data = {
+      title: subtitle,
+      image: coverart,
+      description: title,
+      audio:audio
+    };
+    setShowControl(true)
+    changeControls(data);
+    console.log(data);
   };
   return (
     <>
-      <section>
-        <div
-          onMouseOver={showPlay}
-          className={`${glass} flex w-[180px] flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `}
-        >
-          <div className="">
-            {" "}
-            <div className={`absolute flex h-[170px] w-[170px] items-end border p-2 ${hoverPlay&&'hover:hidden'}`}>
-              {/* <ToastContainer/> */}
-              {!play ? (
-                <BsPlayCircleFill onClick={pause} className="text-4xl" />
-              ) : (
-                <BsPauseCircleFill onClick={pause} className="text-4xl" />
-              )}
-            </div>
-            <Image
-              src={coverart ? coverart : "/assets/cover.jpg"}
-              width={200}
-              height={200}
-              alt={title}
-              priority
-              className=" h-[170px] w-full  rounded-lg bg-cover"
-            />
-            {/* <p className="absolute top-36 text-2xl font-semibold border-l-4 border-blue-800 left-3 capitalize">&nbsp;genre</p> */}
-          </div>
-          <div className="w-full items-start justify-start p-2 ">
-            <h2 className={`font-semibold ${title.length > 18 && "truncate"}`}>
-              {title}
-            </h2>
-            {/* ${desc.length > 25 && "truncate" */}
-            <p
-              className={`text-gray-400 ${subtitle.length > 20 && "truncate"}`}
-            >
-              {subtitle}
-            </p>
-          </div>
+      <div
+        onMouseOver={hoverEffect}
+        onMouseLeave={showHover}
+        onClick={
+          router.pathname !== "/topartists"
+            ? // !isOnTopArtistsPage
+              getData
+            : () => {
+                console.log("click");
+              }
+        }
+        // onClick={router.pathname === "/topartists" && changeRoute}
+        className={[styles.glass, styles.card]}
+      >
+        <div>
+          <PlayPause showPlay={showPlay} pause={pause} play={play} />
+          <Image
+            src={coverart ? coverart : "/assets/cover.jpg"}
+            width={200}
+            height={200}
+            alt={title}
+            priority
+            className={styles.image}
+          />
         </div>
-      </section>
+        <section className={styles.textArea}>
+          <h2
+            className={`font-semibold ${
+              router.pathname === "/topartists" && "hidden"
+            } ${title.length > 18 && "truncate"}`}
+          >
+            {title}
+          </h2>
+          <p
+            className={`text-gray-400${
+              router.pathname === "/topartists" && "text-lg font-bold uppercase"
+            }  ${subtitle.length > 20 && "truncate"}`}
+          >
+            {subtitle}
+          </p>
+        </section>
+      </div>
     </>
   );
 };
