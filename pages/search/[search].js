@@ -4,6 +4,8 @@ import { useGetSongsBySearchQuery } from "../../store/services/shazamCore";
 import { useRouter } from "next/router";
 import Card from "../../components/card/Card";
 import HeroLayout from "../../components/layout/HeroLayout";
+import Load from "../../components/loader/Load";
+import NotFound from "../_error";
 
 const Search = () => {
   const router = useRouter();
@@ -13,8 +15,8 @@ const Search = () => {
   const { data, isFetching, error } = useGetSongsBySearchQuery(searchTerm);
   const songs = data?.tracks?.hits;
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  if (isFetching) return <div>{`Searching ${searchTerm}...`}</div>;
-  if (error) return <div>Song not found</div>;
+  if (isFetching) return <Load />;
+  if (error) return <NotFound/>;
 
   return (
     <HeroLayout error={error} title={`Search results for ${searchTerm} `}>
@@ -30,7 +32,7 @@ const Search = () => {
             song={song.track}
             isPlaying={isPlaying}
             activeSong={activeSong}
-            // data={data}
+            data={data}
             i={i}
           />
         );

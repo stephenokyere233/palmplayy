@@ -63,6 +63,9 @@ const Card = ({
       !showPlay && "bg-gray-400"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
+
+  const { songId, setSongId, changeSongId } = useContext(AppContext);
+
   // const changeRoute = () => {
   //   router.push("/artistsdetails");
   // };
@@ -73,6 +76,8 @@ const Card = ({
     //   description: title,
     //   audio: audio,
     // };
+    changeSongId(song.key)
+    console.log(`path is ${song.key}`);
     setShowControl(true);
     // changeControls(data);
     // console.log(data);
@@ -123,7 +128,7 @@ const Card = ({
             // ${title.length > 18 && "truncate"}
           >
             {/* {title} */}
-            <Link href={`/songs/${song?.key}`}>{song.title}</Link>
+            <Link href={`/songDetails/${song?.key}`}>{song.title}</Link>
           </h2>
           <p
             className={`text-gray-400${

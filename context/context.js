@@ -13,12 +13,17 @@ export const AppProvider = ({ children }) => {
   const [showGenre, setShowGenre] = useState(true);
   const [genreQuery, setGenreQuery] = useState("WORLDWIDE");
   const [searchTerm, setSearchTerm] = useState("");
+  const [songId, setSongId] = useState("");
 
   const changeSearchTerm = (value) => {
     setSearchTerm(value);
     console.log(value);
   };
 
+  const changeSongId=(value)=>{
+    setSongId(value)
+    console.log(value)
+  }
   const handlePlay = () => {
     // console.log(event.target)
     // event.target
@@ -119,7 +124,10 @@ export const AppProvider = ({ children }) => {
         hideController,
         searchTerm,
         setSearchTerm,
-        changeSearchTerm
+        changeSearchTerm,
+        changeSongId,
+        songId,
+        setSongId
       }}
     >
       {children}
