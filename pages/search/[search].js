@@ -16,19 +16,18 @@ const Search = () => {
   const songs = data?.tracks?.hits;
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   if (isFetching) return <Load />;
-  if (error) return <NotFound/>;
+  if (error) return <NotFound />;
 
   return (
     <HeroLayout error={error} title={`Search results for ${searchTerm} `}>
       {songs.map((song, i) => {
         const { title, subtitle } = song.track;
-        console.log(song.track);
         return (
           <Card
             title={title}
             coverart={song.images?.coverart}
             subtitle={subtitle}
-            key={song.key}
+            key={song.url}
             song={song.track}
             isPlaying={isPlaying}
             activeSong={activeSong}

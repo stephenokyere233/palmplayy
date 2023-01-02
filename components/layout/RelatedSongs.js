@@ -4,7 +4,7 @@ import SongBar from "../card/songBar";
 
 const RelatedSongs = () => {
   return (
-    <div className="flex w-full flex-wrap items-center justify-center gap-6">
+    <div className="flex w-full flex-wrap items-center justify-center gap-6 pb-6">
       <SongBar />
       <SongBar />
       <SongBar />

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { clearConfigCache } from "prettier";
+// import { clearConfigCache } from "prettier";
 import React, { useContext } from "react";
 import RelatedSongs from "../../components/layout/RelatedSongs";
 import Load from "../../components/loader/Load";
@@ -17,7 +17,7 @@ const SongDetails = () => {
   const { songId, setSongId, changeSongId } = useContext(AppContext);
   //   setSongId(query.songdetails);
   console.log(`song id from songdeets is ${songId}`);
-  const { data, isFetching, error } = useGetSongDetailsQuery(songId);
+  const { data, isFetching, error } = useGetSongDetailsQuery(`${songId}`);
 
   if (isFetching) return <Load />;
   // if (error) return <div>Not found</div>;

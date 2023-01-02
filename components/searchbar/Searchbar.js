@@ -7,7 +7,6 @@ const Searchbar = () => {
   const router = useRouter();
 
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
 
   const handleSubmit = (e) => {
     e.preventDefault();

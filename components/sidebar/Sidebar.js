@@ -32,7 +32,9 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
     <>
       <div
         className={`${
-          !mobileMenuOpen ? "hidden" : "absolute z-30 w-[300px]"
+          !mobileMenuOpen
+            ? "hidden animate-slideRight"
+            : "absolute z-30 w-[300px] animate-slideLeft"
         }  h-[100vh] overflow-y-scroll ${glass} scrollbar-hide lg:block`}
       >
         <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
@@ -71,12 +73,12 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
       {!mobileMenuOpen ? (
         <BsMusicNoteList
           onClick={onClick}
-          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 top-[3.8em] z-20 text-2xl lg:hidden"
         />
       ) : (
         <FaTimes
           onClick={onClick}
-          className="absolute right-2 z-20 top-[3.8em] text-2xl lg:hidden"
+          className="absolute right-2 top-[3.8em] z-20 text-2xl lg:hidden"
         />
       )}
     </>
