@@ -1,35 +1,47 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Controls from "./Controls";
 import SeekBar from "./SeekBar";
 
-const Player = ({ currentSong }) => {
-  return (
-   
-      <section className="flex flex-col items-center border">
-         
-      {/* <audio src={currentSong} controls repeat="loop" autoPlay /> */}
-      {/* <SeekBar /> */}
+const Player = ({
+  currentSong,
+  activeSong,
+  isPlaying,
+  volume,
+  seekTime,
+  onEnded,
+  onTimeUpdate,
+  onLoadedData,
+  repeat,
+}) => {
+  const ref = useRef(null);
+  // eslint-disable-next-line no-unused-expressions
+  if (ref.current) {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  }
 
-      {/* <audio controls>
-        <source src="/public/music.mp3" type="audio/mp3" autoPlay />
-        Your browser does not support the audio element.
-      </audio> */}
-      {/* <audio controls>
-        <source
-          src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/2b/bd/d0/2bbdd03b-2079-452b-9e54-3000ad9db011/mzaf_10814947559187448634.plus.aac.ep.m4a"
-          type="audio/aac"
-        />
-        Your browser does not support the audio element.
-      </audio> */}
-        <Controls />
-        <audio autoPlay>
-          <source src={currentSong} type="audio/aac" />
-          Your browser does not support the audio element.
-        </audio>
-        <SeekBar />
-        {/* <audio controls src="/public/music.mp3" /> */}
-      </section>
-    
+  useEffect(() => {
+    ref.current.volume = volume;
+  }, [volume]);
+  // updates audio element only on seekTime change (and not on each rerender):
+  useEffect(() => {
+    ref.current.currentTime = seekTime;
+  }, [seekTime]);
+
+  return (
+    <audio
+      ref={ref}
+      loop={repeat}
+      onEnded={onEnded}
+      onTimeUpdate={onTimeUpdate}
+      onLoadedData={onLoadedData}
+    >
+      <source src={activeSong?.hub?.actions[1]?.uri} type="audio/aac" />
+      Your browser does not support the audio element.
+    </audio>
   );
 };
 

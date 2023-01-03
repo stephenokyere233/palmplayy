@@ -4,8 +4,21 @@ import PlayPause from "../controls/PlayPause";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
-const Card = ({ coverart, title, subtitle,audio, onClick }) => {
+const Card = ({
+  coverart,
+  title,
+  subtitle,
+  audio,
+  onClick,
+  song,
+  isPlaying,
+  activeSong,
+  data,
+  i,
+}) => {
   // const [hoverPlay, setHoverPlay] = useState(true);
   // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
   const {
@@ -17,6 +30,16 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
     isOnTopArtistsPage,
     onTopArtistsPage,
   } = useContext(AppContext);
+
+  const dispatch = useDispatch();
+
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+  const handlePlayClick = () => {
+    dispatch(setActiveSong({ song, data, i }));
+    dispatch(playPause(true));
+  };
   const [showPlay, setShowPlay] = useState(true);
   const [play, setPlay] = useState(false);
   const hoverEffect = () => {
@@ -24,7 +47,7 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
     setShowPlay(false);
   };
   const showHover = () => {
-    setShowPlay(true);
+    !play ? setShowPlay(true) : setShowPlay(false);
   };
   const pause = () => {
     setPlay((prev) => !prev);
@@ -40,19 +63,24 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
       !showPlay && "bg-gray-400"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
+
+  const { songId, setSongId, changeSongId } = useContext(AppContext);
+
   // const changeRoute = () => {
   //   router.push("/artistsdetails");
   // };
   const getData = () => {
-    const data = {
-      title: subtitle,
-      image: coverart,
-      description: title,
-      audio:audio
-    };
-    setShowControl(true)
-    changeControls(data);
-    console.log(data);
+    // const data = {
+    //   title: subtitle,
+    //   image: coverart,
+    //   description: title,
+    //   audio: audio,
+    // };
+    changeSongId(song.key)
+    console.log(`path is ${song.key}`);
+    setShowControl(true);
+    // changeControls(data);
+    // console.log(data);
   };
   return (
     <>
@@ -71,12 +99,23 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
         className={[styles.glass, styles.card]}
       >
         <div>
-          <PlayPause showPlay={showPlay} pause={pause} play={play} />
+          <PlayPause
+            showPlay={showPlay}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            song={song}
+            handlePause={handlePauseClick}
+            handlePlay={handlePlayClick}
+          />{" "}
           <Image
-            src={coverart ? coverart : "/assets/cover.jpg"}
+            src={
+              song.images?.coverart
+                ? song.images?.coverart
+                : "/assets/cover.jpg"
+            }
             width={200}
             height={200}
-            alt={title}
+            alt="song_img"
             priority
             className={styles.image}
           />
@@ -85,16 +124,28 @@ const Card = ({ coverart, title, subtitle,audio, onClick }) => {
           <h2
             className={`font-semibold ${
               router.pathname === "/topartists" && "hidden"
-            } ${title.length > 18 && "truncate"}`}
+            } `}
+            // ${title.length > 18 && "truncate"}
           >
-            {title}
+            {/* {title} */}
+            <Link href={`/songDetails/${song?.key}`}>{song.title}</Link>
           </h2>
           <p
             className={`text-gray-400${
               router.pathname === "/topartists" && "text-lg font-bold uppercase"
-            }  ${subtitle.length > 20 && "truncate"}`}
+            } `}
+            //  ${subtitle.length > 20 && "truncate"}
           >
-            {subtitle}
+            {/* {subtitle} */}
+            <Link
+              href={
+                song.artists
+                  ? `/artists/${song?.artists[0]?.adamid}`
+                  : "/top-artists"
+              }
+            >
+              {song.subtitle}
+            </Link>
           </p>
         </section>
       </div>
