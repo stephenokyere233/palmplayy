@@ -55,7 +55,7 @@ const Card = ({
   const router = useRouter();
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
-    textArea: `w-full items-start justify-start p-2 `,
+    textArea: `w-full overflow-hidden items-start justify-start p-2 `,
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
     // title: `font-semibold ${title.length > 18 && "truncate"}`,
     subtitle: ``,
@@ -69,6 +69,18 @@ const Card = ({
   // const changeRoute = () => {
   //   router.push("/artistsdetails");
   // };
+  function matchBrackets(string) {
+    const pattern = /(.*)\s*\(([^()]*)\)/;
+    const match = string.match(pattern);
+    if (match) {
+      const firstPart = match[1];
+      const insideBrackets = match[2];
+      return (string = firstPart);
+    } else {
+      string = string;
+      return (string = string);
+    }
+  }
   const getData = () => {
     // const data = {
     //   title: subtitle,
@@ -76,7 +88,7 @@ const Card = ({
     //   description: title,
     //   audio: audio,
     // };
-    changeSongId(song.key)
+    changeSongId(song.key);
     console.log(`path is ${song.key}`);
     setShowControl(true);
     // changeControls(data);
@@ -125,10 +137,10 @@ const Card = ({
             className={`font-semibold ${
               router.pathname === "/topartists" && "hidden"
             } `}
-            // ${title.length > 18 && "truncate"}
           >
-            {/* {title} */}
-            <Link href={`/songDetails/${song?.key}`}>{song.title}</Link>
+            <Link href={`/songDetails/${song?.key}`}>
+              {matchBrackets(song.title)}
+            </Link>
           </h2>
           <p
             className={`text-gray-400${
@@ -136,13 +148,13 @@ const Card = ({
             } `}
             //  ${subtitle.length > 20 && "truncate"}
           >
-            {/* {subtitle} */}
             <Link
               href={
                 song.artists
                   ? `/artists/${song?.artists[0]?.adamid}`
                   : "/top-artists"
               }
+              className={`${song.subtitle.length > 12 && "truncate"}`}
             >
               {song.subtitle}
             </Link>
