@@ -69,6 +69,18 @@ const Card = ({
   // const changeRoute = () => {
   //   router.push("/artistsdetails");
   // };
+    function matchBrackets(string) {
+      const pattern = /(.*)\s*\(([^()]*)\)/;
+      const match = string.match(pattern);
+      if (match) {
+        const firstPart = match[1];
+        const insideBrackets = match[2];
+        return (string = firstPart);
+      } else {
+        string = string;
+        return (string = string);
+      }
+    }
   const getData = () => {
     // const data = {
     //   title: subtitle,
@@ -128,7 +140,7 @@ const Card = ({
             // ${title.length > 18 && "truncate"}
           >
             {/* {title} */}
-            <Link href={`/songDetails/${song?.key}`}>{song.title}</Link>
+            <Link href={`/songDetails/${song?.key}`}>{matchBrackets(song.title)}</Link>
           </h2>
           <p
             className={`text-gray-400${
