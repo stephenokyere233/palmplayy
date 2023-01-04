@@ -88,8 +88,8 @@ const Card = ({
     //   description: title,
     //   audio: audio,
     // };
-    // changeSongId(song.key)
-    // console.log(`path is ${song.key}`);
+    changeSongId(song.key)
+    console.log(`path is ${song.key}`);
     setShowControl(true);
     // changeControls(data);
     // console.log(data);
