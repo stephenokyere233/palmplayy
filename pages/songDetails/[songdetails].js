@@ -1,9 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
-import RelatedSongs from "../../components/layout/RelatedSongs";
 import Load from "../../components/loader/Load";
-import { AppContext } from "../../context/context";
 import {
   useGetSongDetailsQuery,
   useGetSongRelatedQuery,
@@ -22,24 +19,10 @@ const SongDetails = () => {
     isFetching: isLoading,
     error: notfound,
   } = useGetSongRelatedQuery(songId);
-  console.log(Related);
-  // const {
-  //   data:related,
-  //   isFetching: isFetchinRelatedSongs,
-  //   error,
-  // } = useGetSongRelatedQuery({songId});
-  // const { data: data, isFetching: isFetchingSongDetails } =
-  //   useGetSongDetailsQuery({songId});
-
-  // console.log(related);
-  // console.log(data);
-
-  // if (isFetchingSongDetails && isFetchinRelatedSongs) return <Load />;
 
   if (isFetching) return <Load />;
   if (error) return <NotFound />;
 
-  // console.log(data);
   const { title, subtitle, releasedate } = data;
   const tabname = data.sections?.[1].tabname;
   const sectionLength = data.sections?.length;
@@ -91,7 +74,6 @@ const SongDetails = () => {
         className={`${glass} flex flex-col bg-black bg-opacity-40 pb-6 lg:flex-row`}
       >
         <div className={`lg:w-[55%] `}>
-          {" "}
           <h2 className="p-4 text-3xl font-bold ">Lyrics:</h2>
           <div className="px-4 pb-6 text-lg">
             {sectionLength >= 4 && tabname === "Lyrics" ? (
@@ -100,7 +82,7 @@ const SongDetails = () => {
               })
             ) : (
               <h2 className="text-center text-2xl font-semibold">
-                No lyrics found for this track{" "}
+                No lyrics found for this track
               </h2>
             )}
           </div>

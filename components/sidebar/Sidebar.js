@@ -37,10 +37,10 @@ const Sidebar = ({ mobileMenuOpen, onClick }) => {
             : "absolute z-30 w-[300px] animate-slideLeft"
         }  h-[100vh] overflow-y-scroll ${glass} scrollbar-hide lg:block`}
       >
-        <h2 className="flex h-20 items-center justify-center text-2xl  font-semibold">
+        <Link href="/" className="flex h-20 items-center justify-center text-2xl  font-semibold">
           <FaPlay className="m-2  text-3xl" />
           PALMPLAYY
-        </h2>
+        </Link>
         <nav className="px-8 pb-20">
           <div>
             <span className={styles.title}>menu</span>
