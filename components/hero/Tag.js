@@ -7,11 +7,8 @@ const Tag = ({ name, value }) => {
 
   const setValue = () => {
     newGenreQuery(value);
-    hideGenreTags()
+    hideGenreTags();
   };
-  //   useEffect(() => {
-  //     setValue();
-  //   }, [value]);
   return (
     <button className="rounded-md border p-2" onClick={setValue}>
       {name}

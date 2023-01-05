@@ -15,7 +15,6 @@ const Layout = ({ children }) => {
     setMobileMenuOpen(false);
   }, [router, setMobileMenuOpen]);
 
-    // const router = useRouter();
     router.pathname === "/topartists" && isOnTopArtistsPage;
 
   return (

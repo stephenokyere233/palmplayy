@@ -83,9 +83,6 @@ export const AppProvider = ({ children }) => {
     setShowPlay(true);
   };
 
-  // const pause = () => {
-  //   setPlay((prev) => !prev);
-  // };
   const toggleMobileMenu = () => {
     setMobileMenuOpen((prev) => !prev);
   };
@@ -99,14 +96,11 @@ export const AppProvider = ({ children }) => {
         handlePlay,
         playPause,
         setPlayPause,
-        // play,
-        // setPlay,
         mobileMenuOpen,
         setMobileMenuOpen,
         toggleMobileMenu,
         hoverEffect,
         showHover,
-        // pause,
         setShowGenre,
         showGenre,
         hideGenreTags,

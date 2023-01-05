@@ -33,7 +33,6 @@ const SongDetails = () => {
     const match = string.match(pattern);
     if (match) {
       const firstPart = match[1];
-      const insideBrackets = match[2];
       return (string = firstPart);
     } else {
       string = string;

@@ -57,18 +57,11 @@ const Card = ({
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
     textArea: `w-full overflow-hidden items-start justify-start p-2 `,
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
-    // title: `font-semibold ${title.length > 18 && "truncate"}`,
-    subtitle: ``,
     card: `flex w-[180px] bg-black ${
       !showPlay && "bg-gray-400"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
 
-  const { songId, setSongId, changeSongId } = useContext(AppContext);
-
-  // const changeRoute = () => {
-  //   router.push("/artistsdetails");
-  // };
   function matchBrackets(string) {
     const pattern = /(.*)\s*\(([^()]*)\)/;
     const match = string.match(pattern);
@@ -88,8 +81,6 @@ const Card = ({
     //   description: title,
     //   audio: audio,
     // };
-    changeSongId(song.key);
-    console.log(`path is ${song.key}`);
     setShowControl(true);
     // changeControls(data);
     // console.log(data);
@@ -107,7 +98,6 @@ const Card = ({
                 console.log("click");
               }
         }
-        // onClick={router.pathname === "/topartists" && changeRoute}
         className={[styles.glass, styles.card]}
       >
         <div>
@@ -143,21 +133,13 @@ const Card = ({
             </Link>
           </h2>
           <p
-            className={`text-gray-400${
+            className={`text-gray-400 ${
+              song.subtitle.length > 12 && "truncate"
+            } ${
               router.pathname === "/topartists" && "text-lg font-bold uppercase"
             } `}
-            //  ${subtitle.length > 20 && "truncate"}
           >
-            <Link
-              href={
-                song.artists
-                  ? `/artists/${song?.artists[0]?.adamid}`
-                  : "/top-artists"
-              }
-              className={`${song.subtitle.length > 12 && "truncate"}`}
-            >
-              {song.subtitle}
-            </Link>
+            {song.subtitle}
           </p>
         </section>
       </div>
