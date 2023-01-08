@@ -18,7 +18,7 @@ const Controls = ({
   handleNextSong,
 }) => {
   return (
-    <div className="flex items-center justify-center border text-2xl">
+    <div className="flex items-center justify-center text-2xl">
       <BsArrowRepeat
         size={20}
         color={repeat ? "red" : "white"}

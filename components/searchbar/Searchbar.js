@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 const Searchbar = () => {
   const router = useRouter();
-
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmit = (e) => {

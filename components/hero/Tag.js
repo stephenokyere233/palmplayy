@@ -1,17 +1,13 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../context/context";
 
 const Tag = ({ name, value }) => {
-  const { genreQuery, setGenreQuery, newGenreQuery, hideGenreTags } =
-    useContext(AppContext);
+  const { newGenreQuery, hideGenreTags } = useContext(AppContext);
 
   const setValue = () => {
     newGenreQuery(value);
-    hideGenreTags()
+    hideGenreTags();
   };
-  //   useEffect(() => {
-  //     setValue();
-  //   }, [value]);
   return (
     <button className="rounded-md border p-2" onClick={setValue}>
       {name}

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import Tag from "./Tag";
 import { genres } from "../../constants/genres";
 
