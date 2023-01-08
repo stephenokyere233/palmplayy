@@ -7,20 +7,8 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
-const Card = ({
-  coverart,
-  title,
-  subtitle,
-  audio,
-  onClick,
-  song,
-  isPlaying,
-  activeSong,
-  data,
-  i,
-}) => {
-  // const [hoverPlay, setHoverPlay] = useState(true);
-  // const { showPlay, setShowPlay, play, setPlay ,hoverEffect,showHover,pause} = useContext(AppContext);
+const Card = ({ song, isPlaying, activeSong, data, i }) => {
+
   const {
     controlData,
     setControlData,
@@ -30,7 +18,6 @@ const Card = ({
     isOnTopArtistsPage,
     onTopArtistsPage,
   } = useContext(AppContext);
-
   const dispatch = useDispatch();
 
   const handlePauseClick = () => {
@@ -57,6 +44,8 @@ const Card = ({
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
     textArea: `w-full overflow-hidden items-start justify-start p-2 `,
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
+    playOverlay: `inset-0 absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
+
     card: `flex w-[180px] bg-black ${
       !showPlay && "bg-gray-400"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
@@ -74,17 +63,8 @@ const Card = ({
       return (string = string);
     }
   }
-  const getData = () => {
-    // const data = {
-    //   title: subtitle,
-    //   image: coverart,
-    //   description: title,
-    //   audio: audio,
-    // };
-    setShowControl(true);
-    // changeControls(data);
-    // console.log(data);
-  };
+  
+
   return (
     <>
       <div
@@ -92,23 +72,24 @@ const Card = ({
         onMouseLeave={showHover}
         onClick={
           router.pathname !== "/topartists"
-            ? // !isOnTopArtistsPage
-              getData
+            ? ()=>setShowControl(true)
             : () => {
-                console.log("click");
+                router.push(`/artistDetails/${song?.artists[0]?.adamid}`);
               }
         }
         className={[styles.glass, styles.card]}
       >
         <div>
-          <PlayPause
-            showPlay={showPlay}
-            isPlaying={isPlaying}
-            activeSong={activeSong}
-            song={song}
-            handlePause={handlePauseClick}
-            handlePlay={handlePlayClick}
-          />{" "}
+          <div className={`${router.pathname === "/topartists" && "hidden"} ${styles.playOverlay}`}>
+            <PlayPause
+              showPlay={showPlay}
+              isPlaying={isPlaying}
+              activeSong={activeSong}
+              song={song}
+              handlePause={handlePauseClick}
+              handlePlay={handlePlayClick}
+            />
+          </div>
           <Image
             src={
               song.images?.coverart
@@ -136,7 +117,8 @@ const Card = ({
             className={`text-gray-400 ${
               song.subtitle.length > 12 && "truncate"
             } ${
-              router.pathname === "/topartists" && "text-lg font-bold uppercase"
+              router.pathname === "/topartists" &&
+              "cursor-pointer text-lg font-bold uppercase"
             } `}
           >
             {song.subtitle}

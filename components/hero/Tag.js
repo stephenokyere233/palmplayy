@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../context/context";
 
 const Tag = ({ name, value }) => {
-  const { genreQuery, setGenreQuery, newGenreQuery, hideGenreTags } =
-    useContext(AppContext);
+  const { newGenreQuery, hideGenreTags } = useContext(AppContext);
 
   const setValue = () => {
     newGenreQuery(value);

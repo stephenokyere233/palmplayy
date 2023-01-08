@@ -1,5 +1,3 @@
-import React from "react";
-
 const Span = ({ delay, color }) => {
   return (
     <span

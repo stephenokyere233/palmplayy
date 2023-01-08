@@ -1,18 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import Controls from "./Controls";
-import SeekBar from "./SeekBar";
+import React, { useRef, useEffect } from 'react';
 
-const Player = ({
-  currentSong,
-  activeSong,
-  isPlaying,
-  volume,
-  seekTime,
-  onEnded,
-  onTimeUpdate,
-  onLoadedData,
-  repeat,
-}) => {
+const Player = ({ activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate, onLoadedData, repeat }) => {
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
@@ -33,15 +21,13 @@ const Player = ({
 
   return (
     <audio
+      src={activeSong?.hub?.actions[1]?.uri}
       ref={ref}
       loop={repeat}
       onEnded={onEnded}
       onTimeUpdate={onTimeUpdate}
       onLoadedData={onLoadedData}
-    >
-      <source src={activeSong?.hub?.actions[1]?.uri} type="audio/aac" />
-      Your browser does not support the audio element.
-    </audio>
+    />
   );
 };
 

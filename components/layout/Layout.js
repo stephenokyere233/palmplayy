@@ -36,9 +36,5 @@ const styles = {
   heroWrap: "col-span-5  flex grid-flow-col flex-col lg:col-span-4 ",
   childrenCon: `h-[88vh] overflow-y-scroll pb-20 scrollbar-hide`,
 };
-// const background = {
-//   backgroundColor: `#242222`,
-//   backgroundImage: `linear-gradient(225deg, #242222 0%, #784BA0 33%, #0983da 66%, #0e0d0d 100%)`,
-// };
 
 export default Layout;

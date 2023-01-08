@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import Load from "../loader/Load";
+import React, { useContext } from "react";
 import NotFound from "../../pages/_error";
 import GenreTags from "../hero/GenreTags";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
-import CardContainer from "../cardcontainer/CardContainer";
 
 const HeroLayout = ({ error, title, children }) => {
   const router = useRouter();
@@ -30,10 +28,6 @@ const HeroLayout = ({ error, title, children }) => {
         <div className="grid grid-cols-2 place-items-center gap-6 px-2 md:grid-cols-3  md:gap-6 lg:grid-cols-4 lg:gap-10">
           {children}
         </div>
-        {/* <CardContainer>
-            {children}
-        </CardContainer> */}
-        {/* {isFetching ? <Load /> : <CardContainer data={discover} />} */}
       </section>
     </div>
   );

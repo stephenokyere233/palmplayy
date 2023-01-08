@@ -1,25 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useSession } from "next-auth/react";
-import Dropdown from "../dropdown/Dropdown";
 import CardContainer from "../cardcontainer/CardContainer";
-// import { useGetTopChartsQuery } from "../../store/services/shazamCore";
 import Load from "../loader/Load";
 import NotFound from "../../pages/_error";
-import { BsMusicNoteList } from "react-icons/bs";
-
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import useOnlineStatus from "../../hooks/useOnlineStatus";
-// import {ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import GenreTags from "./GenreTags";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
-// import { Toast } from "react-toastify/dist/components";
 
 const Hero = ({ discover, isFetching, error }) => {
   const router = useRouter();
-  const { showGenre, setShowGenre, hideGenreTags } = useContext(AppContext);
+  const { showGenre, hideGenreTags } = useContext(AppContext);
 
   const { data: session } = useSession();
   let username = "";

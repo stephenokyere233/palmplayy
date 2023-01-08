@@ -7,8 +7,12 @@ import {
 } from "../../store/services/shazamCore";
 import NotFound from "../_error";
 import SongBar from "../../components/card/songBar";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const SongDetails = () => {
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+
   const glass = `bg-clip-padding backdrop-filter backdrop-blur-2xl  `;
   const router = useRouter();
   const query = router.query;
@@ -70,9 +74,9 @@ const SongDetails = () => {
         </div>
       </header>
       <section
-        className={`${glass} flex flex-col bg-black bg-opacity-40 pb-6 lg:flex-row`}
+        className={`${glass} flex flex-col  bg-black bg-opacity-40 pb-6 lg:flex-row`}
       >
-        <div className={`lg:w-[55%] `}>
+        <div className={`lg:w-[55%]`}>
           <h2 className="p-4 text-3xl font-bold ">Lyrics:</h2>
           <div className="px-4 pb-6 text-lg">
             {sectionLength >= 4 && tabname === "Lyrics" ? (
@@ -94,16 +98,20 @@ const SongDetails = () => {
             ) : notfound ? (
               <div>No related tracks</div>
             ) : (
-              <div className="w-full gap-6 md:grid md:grid-cols-2 lg:grid-cols-1">
-                {Related.map((track) => {
+              <div className="w-full place-items-center px-2 md:grid md:grid-cols-2 lg:grid-cols-1">
+                {Related.map((track,i) => {
                   const image = track?.images?.coverart;
                   const { title, subtitle, url } = track;
                   return (
                     <SongBar
                       key={url}
                       src={image}
+                      song={track}
+                      i={i}
                       title={matchBrackets(title)}
                       subtitle={subtitle}
+                      isPlaying={isPlaying}
+                      activeSong={activeSong}
                     />
                   );
                 })}
