@@ -27,8 +27,9 @@ const Controller = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentSongs.length) dispatch(playPause(true));
+    if (currentSongs?.length) dispatch(playPause(true));
   }, []);
+  // console.log(currentSongs)
 
   const handlePlayPause = () => {
     if (!isActive) return;
@@ -44,9 +45,9 @@ const Controller = () => {
     dispatch(playPause(true));
 
     if (!shuffle) {
-      dispatch(nextSong((currentIndex + 1) % currentSongs.length));
+      dispatch(nextSong((currentIndex + 1) % currentSongs?.length));
     } else {
-      dispatch(nextSong(Math.floor(Math.random() * currentSongs.length)));
+      dispatch(nextSong(Math.floor(Math.random() * currentSongs?.length)));
     }
   };
 

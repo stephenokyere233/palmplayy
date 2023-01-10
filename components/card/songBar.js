@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
+import { AppContext } from "../../context/context";
 import { playPause, setActiveSong } from "../../store/features/playerSlice";
 import PlayPause from "../controls/PlayPause";
 
@@ -10,7 +11,7 @@ const SongBar = ({
   artistId,
   isPlaying,
   activeSong,
-  data
+  data,
   // handlePauseClick,
   // handlePlayClick,
 }) => {
@@ -23,15 +24,26 @@ const SongBar = ({
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
-  const [showPlay, setShowPlay] = useState(true);
-  const [play, setPlay] = useState(false);
-  const hoverEffect = () => {
-    console.log("showingpaly");
-    setShowPlay(false);
-  };
+  const [showPlayIcon, setShowPlayIcon] = useState(true);
+
+  const { setShowControl, showControl } = useContext(AppContext);
+  function matchBrackets(string) {
+    const pattern = /(.*)\s*\(([^()]*)\)/;
+    const match = string.match(pattern);
+    if (match) {
+      const firstPart = match[1];
+      const insideBrackets = match[2];
+      return (string = firstPart);
+    } else {
+      string = string;
+      return (string = string);
+    }
+  }
+
   const glass = `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `;
   return (
     <div
+      onClick={() => setShowControl(true)}
       className={`${glass} mb-6 flex h-20 w-full items-center rounded-lg px-2`}
     >
       <Image
@@ -44,25 +56,20 @@ const SongBar = ({
         className="mr-2 rounded-full object-contain"
       />
       <div className="flex-1">
-        <h2 className="text-xl font-semibold tracking-wide">{song?.title}</h2>
+        <h2 className="text-xl font-semibold tracking-wide">
+          {matchBrackets(song?.title)}
+        </h2>
         <p className="text-gray-400">{song?.subtitle}</p>
       </div>
-      <div className="">
+      <div onClick={() => setShowControl(true)}>
         <PlayPause
-          showPlay={showPlay}
+          showIcon={showPlayIcon}
           isPlaying={isPlaying}
           activeSong={activeSong}
           song={song}
           handlePause={handlePauseClick}
           handlePlay={handlePlayClick}
         />
-        {/* <PlayPause
-          isPlaying={isPlaying}
-          activeSong={activeSong}
-          song={song}
-          handlePause={handlePauseClick}
-          handlePlay={() => handlePlayClick(song, i)}
-        /> */}
       </div>
     </div>
   );

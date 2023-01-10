@@ -6,7 +6,7 @@ import {
 } from "react-icons/bs";
 
 const VolumeBar = ({ value, min, max, onChange, setVolume }) => (
-  <section className=" hidden h-full w-full md:justify-center md:items-center  border md:flex">
+  <section className=" hidden h-full w-full md:justify-center md:items-center md:flex">
     <div className="flex-1 w-full flex justify-center items-center">
       {value <= 1 && value > 0.5 && (
         <BsFillVolumeUpFill

@@ -9,7 +9,7 @@ const Tag = ({ name, value }) => {
     hideGenreTags();
   };
   return (
-    <button className="rounded-md border p-2" onClick={setValue}>
+    <button className="rounded-md lg:text-lg text-sm border p-2" onClick={setValue}>
       {name}
     </button>
   );
