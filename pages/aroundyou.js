@@ -10,16 +10,20 @@ const AroundYou = () => {
 
   useEffect(() => {
     const getCountry = async () => {
+      let response;
       try {
         setLoading(true);
-        const res = await axios.get(
+        response = await axios.get(
           `https://geo.ipify.org/api/v2/country?apiKey=at_w3FTstwuqa6A9UBxcyaWJSM6zkxml`,
         );
-        setCountry(res?.data?.location.country);
+        console.log(response);
+        localStorage.setItem("location", response?.data?.location.country);
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
+        const location = localStorage.getItem("location");
+        setCountry(location);
       }
     };
     return getCountry;

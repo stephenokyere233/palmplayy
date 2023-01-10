@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
 const Card = ({ song, isPlaying, activeSong, data, i }) => {
-
   const {
     controlData,
     setControlData,
@@ -26,19 +25,16 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
   const handlePlayClick = () => {
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
+    setShowControl(true);
   };
-  const [showPlay, setShowPlay] = useState(true);
-  const [play, setPlay] = useState(false);
-  const hoverEffect = () => {
-    console.log("showingpaly");
+  const [showPlay, setShowPlay] = useState(false);
+  const showPlayIcon = () => {
+    setShowPlay(true);
+  };
+  const hidePlayIcon = () => {
     setShowPlay(false);
   };
-  const showHover = () => {
-    !play ? setShowPlay(true) : setShowPlay(false);
-  };
-  const pause = () => {
-    setPlay((prev) => !prev);
-  };
+
   const router = useRouter();
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
@@ -46,8 +42,8 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
     playOverlay: `inset-0 absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
 
-    card: `flex w-[180px] bg-black ${
-      !showPlay && "bg-gray-400"
+    card: `flex w-[180px] bg-gray-100 ${
+      !showPlay && "bg-black"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };
 
@@ -63,26 +59,27 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
       return (string = string);
     }
   }
-  
 
   return (
     <>
       <div
-        onMouseOver={hoverEffect}
-        onMouseLeave={showHover}
+        onMouseOver={showPlayIcon}
+        onMouseLeave={hidePlayIcon}
         onClick={
-          router.pathname !== "/topartists"
-            ? ()=>setShowControl(true)
-            : () => {
-                router.push(`/artistDetails/${song?.artists[0]?.adamid}`);
-              }
+          router.pathname === "/topartists"
+            ? () => router.push(`/artistDetails/${song?.artists[0]?.adamid}`)
+            : () => console.log("none")
         }
         className={[styles.glass, styles.card]}
       >
         <div>
-          <div className={`${router.pathname === "/topartists" && "hidden"} ${styles.playOverlay}`}>
+          <div
+            className={`${router.pathname === "/topartists" && "hidden"} ${
+              styles.playOverlay
+            }`}
+          >
             <PlayPause
-              showPlay={showPlay}
+              showIcon={showPlay}
               isPlaying={isPlaying}
               activeSong={activeSong}
               song={song}
@@ -105,7 +102,7 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
         </div>
         <section className={styles.textArea}>
           <h2
-            className={`font-semibold ${
+            className={`font-semibold flex flex-nowrap ${song?.title.length>10?"truncate":""} ${
               router.pathname === "/topartists" && "hidden"
             } `}
           >

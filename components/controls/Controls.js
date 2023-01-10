@@ -5,6 +5,7 @@ import {
   BsFillPlayFill,
   BsShuffle,
 } from "react-icons/bs";
+import {BiSkipNext} from "react-icons/bi"
 import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
 const Controls = ({
   isPlaying,
@@ -32,7 +33,7 @@ const Controls = ({
           className="cursor-pointer"
           onClick={handlePrevSong}
         />
-      )}
+   )} 
       {isPlaying ? (
         <BsFillPauseFill
           size={45}
@@ -52,10 +53,10 @@ const Controls = ({
         <MdSkipNext
           size={30}
           color="#FFF"
-          className="cursor-pointer"
+          className="cursor-pointer block"
           onClick={handleNextSong}
         />
-      )}
+       )} 
       <BsShuffle
         size={20}
         color={shuffle ? "red" : "white"}

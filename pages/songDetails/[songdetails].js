@@ -80,8 +80,8 @@ const SongDetails = () => {
           <h2 className="p-4 text-3xl font-bold ">Lyrics:</h2>
           <div className="px-4 pb-6 text-lg">
             {sectionLength >= 4 && tabname === "Lyrics" ? (
-              lyrics.map((line) => {
-                return <p key={crypto.randomUUID()}>{line}</p>;
+              lyrics.map((line,index) => {
+                return <p key={index}>{line}</p>;
               })
             ) : (
               <h2 className="text-center text-2xl font-semibold">
@@ -98,7 +98,7 @@ const SongDetails = () => {
             ) : notfound ? (
               <div>No related tracks</div>
             ) : (
-              <div className="w-full place-items-center px-2 md:grid md:grid-cols-2 lg:grid-cols-1">
+              <div className="w-full place-items-center px-2 md:grid md:grid-cols-2 md:gap-x-6 lg:grid-cols-1">
                 {Related.map((track,i) => {
                   const image = track?.images?.coverart;
                   const { title, subtitle, url } = track;

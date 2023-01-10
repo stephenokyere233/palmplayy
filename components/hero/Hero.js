@@ -39,11 +39,11 @@ const Hero = ({ discover, isFetching, error }) => {
           {session ? (
             <h2 className={`capitalize`}>{`${welcomeText} , ${username}!`}</h2>
           ) : (
-            <h2 className="">Welcome, have a good time 😉</h2>
+            <h2 className="">Have a good time 😉</h2>
           )}
 
           <button
-            className={`mx-6 rounded-md border p-1 text-lg ${
+            className={`mx-6 rounded-md border p-1 text-sm lg:text-lg ${
               router.pathname === "/" ? "" : "hidden"
             }`}
             onClick={hideGenreTags}
