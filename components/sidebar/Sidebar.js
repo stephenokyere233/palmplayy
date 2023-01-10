@@ -12,7 +12,7 @@ import { FaTimes } from "react-icons/fa";
 
 const Sidebar = ({ mobileMenuOpen, onClick }) => {
   const glass =
-    "bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20 bg-[#473198]";
+    "bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-20 bg-[#473198]";
   const links = [
     { name: "Discover", to: "/", icon: HiOutlineHome },
     { name: "Around You", to: "/aroundyou", icon: HiOutlinePhotograph },
