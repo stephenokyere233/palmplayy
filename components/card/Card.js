@@ -37,12 +37,12 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
 
   const router = useRouter();
   const styles = {
-    glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-gray-300 `,
+    glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-10 hover:bg-white bg-opacity-20 bg-black`,
     textArea: `w-full overflow-hidden items-start justify-start p-2 `,
     image: ` h-[170px] w-full  rounded-lg bg-cover`,
     playOverlay: `inset-0 absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
 
-    card: `flex w-[180px] bg-gray-100 ${
+    card: `flex w-[180px]  ${
       !showPlay && "bg-black"
     } flex-col items-center justify-center rounded-lg p-3 md:w-[200px] `,
   };

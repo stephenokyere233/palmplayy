@@ -34,6 +34,6 @@ const HeroLayout = ({ error, title, children }) => {
 };
 
 const styles = {
-  wrapper: `flex sticky flex-col top-0 bg-black z-10 justify-between bg-[#4A0D67] p-2 px-4 text-xl font-semibold`,
+  wrapper: `flex sticky flex-col top-0  z-10 justify-between bg-[#4A0D67] p-2 px-4 text-xl font-semibold`,
 };
 export default HeroLayout;

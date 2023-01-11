@@ -10,7 +10,7 @@ const PlayPause = ({
   showIcon
 }) => {
   const styles = {
-    icon: `text-4xl lg:text-5xl text-green-400 mx-2 overflow-hidden`,
+    icon: `text-4xl lg:text-5xl bg-black rounded-full  text-green-400 mx-2 overflow-hidden`,
     playOverlay: `inset-0 absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
   };
   return (

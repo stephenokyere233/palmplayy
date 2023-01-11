@@ -42,11 +42,13 @@ const ArtistDetails = () => {
           height={400}
           width={400}
           alt=""
-          className="h-[180px] w-[200px] overflow-hidden rounded-lg object-cover"
+          className="h-[180px] w-32 rounded-lg object-cover md:w-[180px]"
         />
-        <div className="border pl-4">
-          <h2 className="text-7xl font-bold ">{name}</h2>
-          <p>{genreNames[0]}</p>
+        <div className="pl-4">
+          <h2 className="w-full  text-[2.5em] font-bold leading-tight md:text-[4em]  lg:text-[5.5em] ">
+            {name}
+          </h2>
+          <p className="text-xl px-2">{genreNames[0]}</p>
         </div>
       </header>
       <div className="p-4">

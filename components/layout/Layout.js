@@ -28,9 +28,10 @@ const Layout = ({ children }) => {
     </div>
   );
 };
+//  bg-[#4A0D67] 
 const styles = {
   container:
-    "grid h-screen w-full select-none scrollbar-hide overflow-hidden grid-cols-5 bg-[#4A0D67] text-white",
+    "grid h-screen w-full select-none scrollbar-hide overflow-hidden grid-cols-5 bg-[#101029] text-white",
   glass:
     "bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-60  bg-[#5564DF] ",
   heroWrap: "col-span-5  flex grid-flow-col flex-col lg:col-span-4 ",

@@ -8,6 +8,7 @@ import {
 import NotFound from "../_error";
 import SongBar from "../../components/card/songBar";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 
 
 const SongDetails = () => {
@@ -64,9 +65,11 @@ const SongDetails = () => {
             {matchBrackets(title)}
           </h1>
           <div className="flex">
-            <p>
-              <span>{subtitle}</span>
-            </p>
+            <Link href={`/artistDetails/${songId}`}>
+              <p>
+                <span>{subtitle}</span>
+              </p>
+            </Link>
             <p className="ml-1">
               • <span>{releasedate}</span> •
             </p>
@@ -80,7 +83,7 @@ const SongDetails = () => {
           <h2 className="p-4 text-3xl font-bold ">Lyrics:</h2>
           <div className="px-4 pb-6 text-lg">
             {sectionLength >= 4 && tabname === "Lyrics" ? (
-              lyrics.map((line,index) => {
+              lyrics.map((line, index) => {
                 return <p key={index}>{line}</p>;
               })
             ) : (
@@ -99,7 +102,7 @@ const SongDetails = () => {
               <div>No related tracks</div>
             ) : (
               <div className="w-full place-items-center px-2 md:grid md:grid-cols-2 md:gap-x-6 lg:grid-cols-1">
-                {Related.map((track,i) => {
+                {Related.map((track, i) => {
                   const image = track?.images?.coverart;
                   const { title, subtitle, url } = track;
                   return (
