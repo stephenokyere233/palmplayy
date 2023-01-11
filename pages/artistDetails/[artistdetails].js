@@ -16,14 +16,14 @@ const ArtistDetails = () => {
   const artistData = data?.data[0];
   const topSongs = artistData?.views?.["top-songs"].data;
   const topVideos = artistData?.views?.["top-music-videos"].data;
-  console.log(topVideos);
-  console.log(topSongs);
-  console.log(artistData);
+  const similarArtists = artistData?.views?.["similar-artists"].data;
+
+  console.log(similarArtists);
+
   const { attributes, href, id, meta, relationships, type, views } = artistData;
   const { artistBio, artwork, genreNames, name, origin, url, bornOrFormed } =
     attributes;
   const { bgColor, textColor1, textColor2, textColor3, textColor4 } = artwork;
-  console.log(bgColor);
 
   return (
     <div className="w-full overflow-hidden">
@@ -34,11 +34,11 @@ const ArtistDetails = () => {
         {/* sfjsbfsj{" "} */}
       </header>
       <div
-        dangerouslySetInnerHTML={{ __html: artistBio }}
+        // dangerouslySetInnerHTML={{ __html: artistBio }}
         style={{ color: `#${textColor2}` }}
       />
       <Category name="top songs">
-        <div className="px-4 flex min-w-[180vw] gap-4">
+        <div className="flex min-w-[180vw] gap-4 px-4">
           {topSongs.map((card, index) => {
             const {
               artistName,
@@ -48,8 +48,8 @@ const ArtistDetails = () => {
               releaseDate,
               previews,
             } = card.attributes;
-            const audioTrack = previews.url;
-            const { url, bgColor,textColor2} = card.attributes.artwork;
+            const audioTrack = previews[0].url;
+            const { url, bgColor, textColor2 } = card.attributes.artwork;
             return (
               <DetailCard
                 key={index}
@@ -60,6 +60,50 @@ const ArtistDetails = () => {
                 albumName={albumName}
                 artistName={artistName}
                 releaseDate={releaseDate}
+              />
+            );
+          })}
+        </div>
+      </Category>
+      <Category name="top videos">
+        <div className="flex min-w-[180vw] gap-4 px-4">
+          {topVideos.map((video, index) => {
+            const {
+              artistName,
+              name,
+              albumName,
+              genreNames,
+              releaseDate,
+              previews,
+            } = video.attributes;
+            // const audioTrack = previews.url;
+            const { url, bgColor, textColor2 } = video.attributes.artwork;
+            return (
+              <DetailCard
+                key={video.id}
+                borderColor={textColor2}
+                genre={genreNames[0]}
+                imageUrl={url}
+                songTitle={name}
+                albumName={albumName}
+                artistName={artistName}
+                releaseDate={releaseDate}
+              />
+            );
+          })}
+        </div>
+      </Category>
+      <Category name="Similar artists">
+        <div className="flex min-w-[180vw] gap-4 px-4">
+          {similarArtists.map((artist, index) => {
+            const { id } = artist;
+            const { name, genreNames, bornOrFormed } = artist.attributes;
+            return (
+              <ArtistDetails
+                key={id}
+                artistName={name}
+                genre={genreNames[0]}
+                formed={bornOrFormed}
               />
             );
           })}

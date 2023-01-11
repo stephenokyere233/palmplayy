@@ -1,16 +1,36 @@
+import React, { useContext, useState } from "react";
 import Image from "next/image";
-import React, { useState } from "react";
+import PlayPause from "../controls/PlayPause";
+import { AppContext } from "../../context/context";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
-const DetailCard = ({
+const ArtistCard = ({
   imageUrl,
   songTitle,
   artistName,
   albumName,
-  releaseDate,
+  formed,
   genre,
   borderColor,
-  albumColor
+  albumColor,
 }) => {
+  const router = useRouter();
+
+  function matchBrackets(string) {
+    const pattern = /(.*)\s*\(([^()]*)\)/;
+    const match = string.match(pattern);
+    if (match) {
+      const firstPart = match[1];
+      const insideBrackets = match[2];
+      return (string = firstPart);
+    } else {
+      string = string;
+      return (string = string);
+    }
+  }
 
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-black `,
@@ -25,39 +45,34 @@ const DetailCard = ({
             height={400}
             width={400}
             alt=""
-            style={{ borderBottom: `5px solid #${borderColor}` }}
             className="h-[180px] w-full overflow-hidden rounded-md object-cover"
           />
           <div className="absolute  top-3 right-3 m-2 rounded-full bg-gray-600 px-2 text-sm text-white">
-            {releaseDate}
+            {formed}
           </div>
-          <div
+          {/* <div
             style={{ borderLeft: `5px solid #${borderColor}` }}
             className="absolute bottom-4 mb-3"
           >
             <p className="ml-3 text-lg  font-medium">{genre}</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="px-2 pb-4">
         <h2
           className={`${
-            songTitle.length > 10 && "truncate"
+            artistName?.length > 10 && "truncate"
           } w-[180px] pb-1 text-lg font-medium `}
         >
-          {songTitle}
+          {artistName}
         </h2>
-        <div className="text-md leading-tight text-gray-400">
-          <p className={`w-[190px]  ${artistName?.length > 10 && "truncate"}`}>
-            {artistName}
-          </p>
-          <p className={`w-[190px] ${albumName?.length > 10 && "truncate"}`}>
-            {albumName}
-          </p>
-        </div>
+
+        <p className={`text-gray-400`}>
+          artist
+        </p>
       </div>
     </div>
   );
 };
 
-export default DetailCard;
+export default ArtistCard;
