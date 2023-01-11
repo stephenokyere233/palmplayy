@@ -14,7 +14,6 @@ const PlayPause = ({
     playOverlay: `inset-0 absolute animate-slideUp flex h-[70%] w-full items-end justify-end  p-2`,
   };
   return (
-    // <div className={styles.playOverlay}>
     <div className={showIcon?"block":"hidden"}>
       {isPlaying && activeSong?.title === song.title ? (
         <BsPauseCircleFill onClick={handlePause} className={styles.icon} />

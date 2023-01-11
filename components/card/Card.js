@@ -9,11 +9,7 @@ import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
 const Card = ({ song, isPlaying, activeSong, data, i }) => {
   const {
-    controlData,
-    setControlData,
-    hideController,
     setShowControl,
-    changeControls,
     isOnTopArtistsPage,
     onTopArtistsPage,
   } = useContext(AppContext);
@@ -115,7 +111,7 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
               song.subtitle.length > 12 && "truncate"
             } ${
               router.pathname === "/topartists" &&
-              "cursor-pointer text-lg font-bold uppercase"
+              "cursor-pointer text-lg font-bold text-white uppercase"
             } `}
           >
             {song.subtitle}

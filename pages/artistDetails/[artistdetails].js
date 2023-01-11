@@ -19,15 +19,14 @@ const ArtistDetails = () => {
   const topVideos = artistData?.views?.["top-music-videos"].data;
   const similarArtists = artistData?.views?.["similar-artists"]?.data;
 
-  const { attributes, href, id, meta, relationships, type, views } = artistData;
-  const { artistBio, artwork, genreNames, name, origin, bornOrFormed } =
-    attributes;
+  const { attributes } = artistData;
+  const { artistBio, artwork, genreNames, name } = attributes;
   const { bgColor, textColor1, textColor2, url, textColor3, textColor4 } =
     artwork;
 
-      const styles = {
-        glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20  `,
-      };
+  const styles = {
+    glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20  `,
+  };
 
   console.log(artistData);
   return (
@@ -48,7 +47,7 @@ const ArtistDetails = () => {
           <h2 className="w-full  text-[2.5em] font-bold leading-tight md:text-[4em]  lg:text-[5.5em] ">
             {name}
           </h2>
-          <p className="text-xl px-2">{genreNames[0]}</p>
+          <p className="px-2 text-xl">{genreNames[0]}</p>
         </div>
       </header>
       <div className="p-4">
