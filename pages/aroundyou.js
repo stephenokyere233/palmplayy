@@ -14,7 +14,7 @@ const AroundYou = () => {
       try {
         setLoading(true);
         response = await axios.get(
-          `https://geo.ipify.org/api/v2/country?apiKey=at_w3FTstwuqa6A9UBxcyaWJSM6zkxml`,
+          `https://geo.ipify.org/api/v2/country?apiKey=${process.env.NEXT_PUBLIC_GET_LOCATION}`,
         );
         console.log(response);
         localStorage.setItem("location", response?.data?.location.country);

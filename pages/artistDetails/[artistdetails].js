@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import Category from "../../components/details/Category";
+import DetailCard from "../../components/details/DetailCard";
 import Load from "../../components/loader/Load";
 
 import { useGetArtistDetailsQuery } from "../../store/services/shazamCore";
@@ -14,7 +16,7 @@ const ArtistDetails = () => {
   const artistData = data?.data[0];
   const topSongs = artistData?.views?.["top-songs"].data;
   const topVideos = artistData?.views?.["top-music-videos"].data;
-  console.log(topVideos)
+  console.log(topVideos);
   console.log(topSongs);
   console.log(artistData);
   const { attributes, href, id, meta, relationships, type, views } = artistData;
@@ -24,35 +26,45 @@ const ArtistDetails = () => {
   console.log(bgColor);
 
   return (
-    <div>
+    <div className="w-full overflow-hidden">
       <header
         style={{ background: `#${bgColor}`, color: `#${textColor1}` }}
         className={`h-[15em] border `}
       >
-        sfjsbfsj{" "}
+        {/* sfjsbfsj{" "} */}
       </header>
       <div
         dangerouslySetInnerHTML={{ __html: artistBio }}
         style={{ color: `#${textColor2}` }}
       />
-      <div>
-        <h2>Top songs</h2>
-        {topSongs.map((song) => {
-          const { artistName, name, albumName, releaseDate, previews } =
-            song.attributes;
-          const audioTrack = previews.url;
-          const { url } = song.attributes.artwork;
-          return (
-            <div key={song.id} className="m-4 border-2">
-              <Image src={url} height={100} width={100} alt="pic" />
-              <h2>{name}</h2>
-              <h2>{artistName}</h2>
-              <h2>{albumName}</h2>
-              <h2>{releaseDate}</h2>
-            </div>
-          );
-        })}
-      </div>
+      <Category name="top songs">
+        <div className="px-4 flex min-w-[180vw] gap-4">
+          {topSongs.map((card, index) => {
+            const {
+              artistName,
+              name,
+              albumName,
+              genreNames,
+              releaseDate,
+              previews,
+            } = card.attributes;
+            const audioTrack = previews.url;
+            const { url, bgColor,textColor2} = card.attributes.artwork;
+            return (
+              <DetailCard
+                key={index}
+                borderColor={textColor2}
+                genre={genreNames[0]}
+                imageUrl={url}
+                songTitle={name}
+                albumName={albumName}
+                artistName={artistName}
+                releaseDate={releaseDate}
+              />
+            );
+          })}
+        </div>
+      </Category>
     </div>
   );
 };
