@@ -32,6 +32,7 @@ const SongDetails = () => {
   const tabname = data.sections?.[1].tabname;
   const sectionLength = data.sections?.length;
   const lyrics = data.sections?.[1].text;
+  // console.log(data)
 
   function matchBrackets(string) {
     const pattern = /(.*)\s*\(([^()]*)\)/;
@@ -65,7 +66,10 @@ const SongDetails = () => {
             {matchBrackets(title)}
           </h1>
           <div className="flex">
-            <Link href={`/artistDetails/${songId}`}>
+            <Link
+            className="hover:underline "
+              href={`/artistDetails/${data?.artists[0]?.adamid}`}
+            >
               <p>
                 <span>{subtitle}</span>
               </p>

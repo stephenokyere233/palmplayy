@@ -25,7 +25,7 @@ const HeroLayout = ({ error, title, children }) => {
         </div>
       </header>
       <section className="w-full px-2">
-        <div className="grid grid-cols-2 place-items-center gap-6 px-2 md:grid-cols-3  md:gap-6 lg:grid-cols-4 lg:gap-10">
+        <div className={styles.childContainer}>
           {children}
         </div>
       </section>
@@ -35,5 +35,7 @@ const HeroLayout = ({ error, title, children }) => {
 
 const styles = {
   wrapper: `flex sticky flex-col top-0  z-10 justify-between bg-[#4A0D67] p-2 px-4 text-xl font-semibold`,
+  childContainer:
+    "grid grid-cols-2 place-items-center gap-6 px-2 md:grid-cols-3  md:gap-6 lg:grid-cols-4 lg:gap-10",
 };
 export default HeroLayout;

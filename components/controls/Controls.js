@@ -5,7 +5,6 @@ import {
   BsFillPlayFill,
   BsShuffle,
 } from "react-icons/bs";
-import {BiSkipNext} from "react-icons/bi"
 import { MdSkipPrevious, MdSkipNext } from "react-icons/md";
 const Controls = ({
   isPlaying,

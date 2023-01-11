@@ -9,11 +9,7 @@ import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
 const Card = ({ song, isPlaying, activeSong, data, i }) => {
   const {
-    controlData,
-    setControlData,
-    hideController,
     setShowControl,
-    changeControls,
     isOnTopArtistsPage,
     onTopArtistsPage,
   } = useContext(AppContext);

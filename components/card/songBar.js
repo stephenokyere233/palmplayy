@@ -1,9 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppContext } from "../../context/context";
 import { playPause, setActiveSong } from "../../store/features/playerSlice";
 import PlayPause from "../controls/PlayPause";
+
 
 const SongBar = ({
   song,
@@ -32,7 +34,6 @@ const SongBar = ({
     const match = string.match(pattern);
     if (match) {
       const firstPart = match[1];
-      const insideBrackets = match[2];
       return (string = firstPart);
     } else {
       string = string;
@@ -56,9 +57,9 @@ const SongBar = ({
         className="mr-2 rounded-full object-contain"
       />
       <div className="flex-1">
-        <h2 className="text-xl font-semibold tracking-wide">
+        <Link href={`/songDetails/${song?.key}`} className="text-xl font-semibold tracking-wide">
           {matchBrackets(song?.title)}
-        </h2>
+        </Link>
         <p className="text-gray-400">{song?.subtitle}</p>
       </div>
       <div onClick={() => setShowControl(true)}>

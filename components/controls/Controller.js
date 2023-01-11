@@ -29,7 +29,6 @@ const Controller = () => {
   useEffect(() => {
     if (currentSongs?.length) dispatch(playPause(true));
   }, []);
-  // console.log(currentSongs)
 
   const handlePlayPause = () => {
     if (!isActive) return;
@@ -65,6 +64,7 @@ const Controller = () => {
     wrapper: ` ${
       showControls ? "block" : "hidden"
     } animate-slideUp center fixed bottom-0 z-10 grid grid-cols-2 lg:grid-cols-3 lg:gap-4 h-20  w-full justify-between border-t border-gray-700 bg-[#251749] px-2 lg:px-6 py-2`,
+    controls: "flex flex-1 flex-col items-center justify-center",
   };
 
   return (
@@ -74,7 +74,7 @@ const Controller = () => {
         isActive={isActive}
         activeSong={activeSong}
       />
-      <div className="flex flex-1 flex-col items-center justify-center">
+      <div className={styles.controls}>
         <Controls
           isPlaying={isPlaying}
           isActive={isActive}
