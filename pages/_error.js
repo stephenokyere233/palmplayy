@@ -16,7 +16,7 @@ const NotFound = () => {
       />
       <p className={styles.redirect}>
         Go to
-        <Link className="text-green-400" href={"/"}>
+        <Link className="text-green-400 pl-1" href={"/"}>
           Discover Page
         </Link>
       </p>
