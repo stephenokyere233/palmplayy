@@ -16,6 +16,7 @@ const ArtistCard = ({
   genre,
   borderColor,
   albumColor,
+  id,
 }) => {
   const router = useRouter();
 
@@ -37,7 +38,7 @@ const ArtistCard = ({
   };
 
   return (
-    <div className={` w-[200px] rounded-md ${styles.glass}`}>
+    <Link href={`/artistDetails/${id}`} className={` w-[200px] rounded-md ${styles.glass}`}>
       <div className="">
         <div className="relative p-3">
           <Image
@@ -45,11 +46,11 @@ const ArtistCard = ({
             height={400}
             width={400}
             alt=""
-            className="h-[180px] w-full overflow-hidden rounded-md object-cover"
+            className="h-[180px] rounded-full w-full overflow-hidden object-cover"
           />
-          <div className="absolute  top-3 right-3 m-2 rounded-full bg-gray-600 px-2 text-sm text-white">
+          {/* <div className="absolute  top-3 right-3 m-2 rounded-full bg-gray-600 px-2 text-sm text-white">
             {formed}
-          </div>
+          </div> */}
           {/* <div
             style={{ borderLeft: `5px solid #${borderColor}` }}
             className="absolute bottom-4 mb-3"
@@ -67,11 +68,11 @@ const ArtistCard = ({
           {artistName}
         </h2>
 
-        <p className={`text-gray-400`}>
+        <p className={`text-gray-400 capitalize`}>
           artist
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
