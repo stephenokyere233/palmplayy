@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ArtistCard from "../../components/card/ArtistCard";
 import Category from "../../components/details/Category";
 import DetailCard from "../../components/details/DetailCard";
@@ -9,6 +9,7 @@ import Load from "../../components/loader/Load";
 import { useGetArtistDetailsQuery } from "../../store/services/shazamCore";
 
 const ArtistDetails = () => {
+  const [length, setLength] = useState(false);
   const router = useRouter();
   const query = router.query;
   const artistId = query.artistdetails;
@@ -21,21 +22,21 @@ const ArtistDetails = () => {
 
   const { attributes } = artistData;
   const { artistBio, artwork, genreNames, name } = attributes;
-  const { bgColor, textColor1, textColor2, url, textColor3, textColor4 } =
-    artwork;
+  const { url } = artwork;
 
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20  `,
   };
 
-  console.log(artistData);
+  const checkLength = () => {
+    setLength((prev) => !prev);
+  };
+
   return (
     <div className="w-full overflow-hidden">
       <header
-        // style={{ background: `#${bgColor}`, color: `#${textColor1}` }}
         className={`${styles.glass} flex h-[15em] items-center bg-black px-4 `}
       >
-        {/* sfjsbfsj{" "} */}
         <Image
           src={url}
           height={400}
@@ -51,12 +52,18 @@ const ArtistDetails = () => {
         </div>
       </header>
       <div className="p-4">
-        <h2 className="text-2xl font-medium">Biography</h2>
+        <h2 className={`text-2xl font-medium`}>Biography</h2>
 
         <div
+          className={!length && "truncate"}
           dangerouslySetInnerHTML={{ __html: artistBio }}
-          style={{ color: `#${textColor2}` }}
         />
+        <button
+          onClick={checkLength}
+          className="my-2 rounded-md bg-green-500 p-2 font-medium capitalize text-black"
+        >
+          read more
+        </button>
       </div>
       <Category name="top songs">
         <div className="flex min-w-[180vw] gap-4 px-4">

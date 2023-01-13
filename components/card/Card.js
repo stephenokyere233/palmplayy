@@ -9,9 +9,7 @@ import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
 const Card = ({ song, isPlaying, activeSong, data, i }) => {
   const {
-    setShowControl,
-    isOnTopArtistsPage,
-    onTopArtistsPage,
+    setShowControl
   } = useContext(AppContext);
   const dispatch = useDispatch();
 
