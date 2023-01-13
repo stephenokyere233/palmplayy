@@ -10,12 +10,9 @@ import PlayPause from "../controls/PlayPause";
 const SongBar = ({
   song,
   i,
-  artistId,
   isPlaying,
   activeSong,
   data,
-  // handlePauseClick,
-  // handlePlayClick,
 }) => {
   const dispatch = useDispatch();
 
@@ -26,7 +23,7 @@ const SongBar = ({
     dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
-  const [showPlayIcon, setShowPlayIcon] = useState(true);
+  const [showPlayIcon] = useState(true);
 
   const { setShowControl, showControl } = useContext(AppContext);
   function matchBrackets(string) {
