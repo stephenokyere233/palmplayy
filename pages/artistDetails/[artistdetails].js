@@ -41,7 +41,7 @@ const ArtistDetails = () => {
 
   return (
     <div className={styles.wrapper}>
-      <header className={[styles.glass, styles.header]}>
+      <header className={`${styles.header} ${styles.glass}`}>
         <Image
           src={url}
           height={400}
