@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import PlayPause from "../controls/PlayPause";
 import { AppContext } from "../../context/context";
@@ -8,10 +8,9 @@ import { useDispatch } from "react-redux";
 import { playPause, setActiveSong } from "../../store/features/playerSlice";
 
 const Card = ({ song, isPlaying, activeSong, data, i }) => {
-  const {
-    setShowControl
-  } = useContext(AppContext);
+  const { setShowControl } = useContext(AppContext);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -29,7 +28,6 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
     setShowPlay(false);
   };
 
-  const router = useRouter();
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-10 hover:bg-white bg-opacity-20 bg-black`,
     textArea: `w-full overflow-hidden items-start justify-start p-2 `,
@@ -96,9 +94,9 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
         </div>
         <section className={styles.textArea}>
           <h2
-            className={`font-semibold flex flex-nowrap ${song?.title.length>10?"truncate":""} ${
-              router.pathname === "/topartists" && "hidden"
-            } `}
+            className={`flex flex-nowrap font-semibold ${
+              song?.title.length > 10 ? "truncate" : ""
+            } ${router.pathname === "/topartists" && "hidden"} `}
           >
             <Link href={`/songDetails/${song?.key}`}>
               {matchBrackets(song.title)}
@@ -109,7 +107,7 @@ const Card = ({ song, isPlaying, activeSong, data, i }) => {
               song.subtitle.length > 12 && "truncate"
             } ${
               router.pathname === "/topartists" &&
-              "cursor-pointer text-lg font-bold text-white uppercase"
+              "cursor-pointer text-lg font-bold uppercase text-white"
             } `}
           >
             {song.subtitle}

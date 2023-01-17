@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import {
-  nextSong,
-  prevSong,
-  playPause,
-} from "../../store/features/playerSlice";
-
 import SeekBar from "./SeekBar";
 import VolumeBar from "./Volume";
 import Player from "./Player";
 import TrackDetails from "./TrackDetails";
 import Controls from "./Controls";
 import { AppContext } from "../../context/context";
+import {
+  nextSong,
+  prevSong,
+  playPause,
+} from "../../store/features/playerSlice";
+
 
 const Controller = () => {
   const { showControls } = useContext(AppContext);

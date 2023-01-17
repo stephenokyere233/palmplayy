@@ -1,5 +1,4 @@
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { createContext } from "react";
 
@@ -20,30 +19,10 @@ export const AppProvider = ({ children }) => {
     console.log(value);
   };
 
-  const changeSongId=(value)=>{
-    setSongId(value)
-    console.log(value)
-  }
-  const handlePlay = () => {
-    // console.log(event.target)
-    // event.target
-    setPlayPause(true);
-    // setPlayPause(prev=>~prev);
-    console.log("palying");
+  const changeSongId = (value) => {
+    setSongId(value);
+    console.log(value);
   };
-  const handlePause = () => {
-    // setPlayPause((prev) => ~prev);
-    setPlayPause(false);
-    console.log("paused");
-  };
-  const [controlData, setControlData] = useState({
-    image: "",
-    title: "",
-    description: "",
-    audio: "",
-    play: handlePause,
-    pause: handlePlay,
-  });
 
   const [onTopArtistsPage, setOnTopArtistsPage] = useState(false);
 
@@ -56,16 +35,6 @@ export const AppProvider = ({ children }) => {
     console.log("is on artist page test");
   };
 
-  const changeControls = (value) => {
-    setControlData((prev) => ({
-      ...prev,
-      image: value.image,
-      title: value.title,
-      description: value.description,
-      audio: value.audio,
-    }));
-  };
-
   const hideGenreTags = () => {
     setShowGenre((prev) => !prev);
   };
@@ -73,14 +42,6 @@ export const AppProvider = ({ children }) => {
   const newGenreQuery = (value) => {
     setGenreQuery(value);
     console.log(value);
-  };
-
-  const hoverEffect = () => {
-    console.log("showingpaly");
-    setShowPlay(false);
-  };
-  const showHover = () => {
-    setShowPlay(true);
   };
 
   const toggleMobileMenu = () => {
@@ -92,24 +53,17 @@ export const AppProvider = ({ children }) => {
       value={{
         showPlay,
         setShowPlay,
-        handlePause,
-        handlePlay,
         playPause,
         setPlayPause,
         mobileMenuOpen,
         setMobileMenuOpen,
         toggleMobileMenu,
-        hoverEffect,
-        showHover,
         setShowGenre,
         showGenre,
         hideGenreTags,
         genreQuery,
         setGenreQuery,
         newGenreQuery,
-        controlData,
-        setControlData,
-        changeControls,
         isOnTopArtistsPage,
         setOnTopArtistsPage,
         onTopArtistsPage,
@@ -121,7 +75,7 @@ export const AppProvider = ({ children }) => {
         changeSearchTerm,
         changeSongId,
         songId,
-        setSongId
+        setSongId,
       }}
     >
       {children}

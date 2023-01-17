@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useGetSongsBySearchQuery } from "../../store/services/shazamCore";
 import { useRouter } from "next/router";

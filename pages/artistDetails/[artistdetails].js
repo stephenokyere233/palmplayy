@@ -26,6 +26,13 @@ const ArtistDetails = () => {
 
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl  bg-opacity-20  `,
+    header: "flex h-[15em] items-center bg-black px-4",
+    wrapper: "w-full overflow-hidden",
+    image: "h-[180px] w-32 rounded-lg object-cover md:w-[180px]",
+    name: "w-full  text-[2.5em] font-bold leading-tight md:text-[4em] lg:text-[5.5em]",
+    btn: "my-2 rounded-md bg-green-500 p-2 font-medium capitalize text-black",
+    overflow: "flex min-w-[180vw] gap-4 px-4",
+    genre: "px-2 text-xl",
   };
 
   const checkLength = () => {
@@ -33,22 +40,18 @@ const ArtistDetails = () => {
   };
 
   return (
-    <div className="w-full overflow-hidden">
-      <header
-        className={`${styles.glass} flex h-[15em] items-center bg-black px-4 `}
-      >
+    <div className={styles.wrapper}>
+      <header className={[styles.glass, styles.header]}>
         <Image
           src={url}
           height={400}
           width={400}
           alt=""
-          className="h-[180px] w-32 rounded-lg object-cover md:w-[180px]"
+          className={styles.image}
         />
         <div className="pl-4">
-          <h2 className="w-full  text-[2.5em] font-bold leading-tight md:text-[4em]  lg:text-[5.5em] ">
-            {name}
-          </h2>
-          <p className="px-2 text-xl">{genreNames[0]}</p>
+          <h2 className={styles.name}>{name}</h2>
+          <p className={styles.genre}>{genreNames[0]}</p>
         </div>
       </header>
       <div className="p-4">
@@ -58,15 +61,12 @@ const ArtistDetails = () => {
           className={!length && "truncate"}
           dangerouslySetInnerHTML={{ __html: artistBio }}
         />
-        <button
-          onClick={checkLength}
-          className="my-2 rounded-md bg-green-500 p-2 font-medium capitalize text-black"
-        >
+        <button onClick={checkLength} className={styles.btn}>
           read more
         </button>
       </div>
       <Category name="top songs">
-        <div className="flex min-w-[180vw] gap-4 px-4">
+        <div className={styles.overflow}>
           {topSongs.map((card, index) => {
             const {
               artistName,
@@ -80,7 +80,7 @@ const ArtistDetails = () => {
             const { url, textColor2 } = card.attributes.artwork;
             return (
               <DetailCard
-                key={index}
+                key={url}
                 borderColor={textColor2}
                 genre={genreNames[0]}
                 imageUrl={url}
@@ -94,8 +94,8 @@ const ArtistDetails = () => {
         </div>
       </Category>
       <Category name="top videos">
-        <div className="flex min-w-[180vw] gap-4 px-4">
-          {topVideos.map((video, index) => {
+        <div className={styles.overflow}>
+          {topVideos.map((video) => {
             const {
               artistName,
               name,
@@ -122,8 +122,8 @@ const ArtistDetails = () => {
         </div>
       </Category>
       <Category name="Similar artists">
-        <div className="flex min-w-[180vw] gap-4 px-4">
-          {similarArtists.map((artist, index) => {
+        <div className={styles.overflow}>
+          {similarArtists.map((artist) => {
             const { id } = artist;
             const { name, genreNames, bornOrFormed } = artist.attributes;
             const { url } = artist.attributes.artwork;

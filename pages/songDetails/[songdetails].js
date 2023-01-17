@@ -10,7 +10,6 @@ import SongBar from "../../components/card/songBar";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 
-
 const SongDetails = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
 
@@ -32,7 +31,6 @@ const SongDetails = () => {
   const tabname = data.sections?.[1].tabname;
   const sectionLength = data.sections?.length;
   const lyrics = data.sections?.[1].text;
-  // console.log(data)
 
   function matchBrackets(string) {
     const pattern = /(.*)\s*\(([^()]*)\)/;
@@ -67,7 +65,7 @@ const SongDetails = () => {
           </h1>
           <div className="flex">
             <Link
-            className="hover:underline "
+              className="hover:underline "
               href={`/artistDetails/${data?.artists[0]?.adamid}`}
             >
               <p>

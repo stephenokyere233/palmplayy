@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 
 const Track = ({ isPlaying, isActive, activeSong }) => (
   <div className="flex flex-1 items-center justify-start">

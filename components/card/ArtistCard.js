@@ -1,9 +1,7 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const ArtistCard = ({ imageUrl, artistName, id }) => {
-
   function matchBrackets(string) {
     const pattern = /(.*)\s*\(([^()]*)\)/;
     const match = string.match(pattern);
@@ -15,7 +13,7 @@ const ArtistCard = ({ imageUrl, artistName, id }) => {
       return (string = string);
     }
   }
-  
+
   const styles = {
     glass: `bg-clip-padding backdrop-filter backdrop-blur-2xl hover:bg-opacity-30  bg-opacity-20 bg-black `,
     image: `h-[180px] rounded-full w-full overflow-hidden object-cover`,
@@ -28,7 +26,10 @@ const ArtistCard = ({ imageUrl, artistName, id }) => {
   };
 
   return (
-    <Link href={`/artistDetails/${id}`} className={[styles.wrapper,styles.glass]}>
+    <Link
+      href={`/artistDetails/${id}`}
+      className={[styles.wrapper, styles.glass]}
+    >
       <div className="">
         <div className={styles.imageCon}>
           <Image

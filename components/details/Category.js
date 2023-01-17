@@ -1,5 +1,3 @@
-import React from "react";
-
 const Category = ({ children, name }) => {
   return (
     <div className={styles.wrapper}>
