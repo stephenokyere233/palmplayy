@@ -1,23 +1,29 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 
-const useOnlineStatus=()=> {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
+const useOnlineStatus = () => {
+  const [online, setOnline] = useState(false);
 
   useEffect(() => {
-    function handleOnlineStatusChange() {
-      setIsOnline(navigator.onLine);
-    }
+    const handleOnline = () => {
+      setOnline(true);
+      toast.success("Connection is back");
+    };
+    const handleOffline = () => {
+      setOnline(false);
+      toast.error("You Lost Internet Connection");
+    };
 
-    window.addEventListener("online", handleOnlineStatusChange);
-    window.addEventListener("offline", handleOnlineStatusChange);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
     return () => {
-      window.removeEventListener("online", handleOnlineStatusChange);
-      window.removeEventListener("offline", handleOnlineStatusChange);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
     };
   }, []);
 
-  return isOnline;
-}
+  return online;
+};
 
-export default useOnlineStatus
+export default useOnlineStatus;

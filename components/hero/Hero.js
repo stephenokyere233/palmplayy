@@ -7,6 +7,7 @@ import GenreTags from "./GenreTags";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
 import useGreetings from "../../hooks/useGreetings";
+import useOnlineStatus from "../../hooks/useOnlineStatus";
 
 const Hero = ({ discover, isFetching, error }) => {
   const router = useRouter();
@@ -33,7 +34,11 @@ const Hero = ({ discover, isFetching, error }) => {
   //   welcomeText = "good evening";
   // }
 
-  const {greeting}=useGreetings()
+  const { greeting } = useGreetings();
+  const  online  = useOnlineStatus();
+  console.log(online);
+
+  // if(!online) return<div>Not online</div>
 
   if (error) return <NotFound />;
   return (

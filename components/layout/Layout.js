@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { AppContext } from "../../context/context";
 import Controller from "../controls/Controller";
 import Searchbar from "../searchbar/Searchbar";
@@ -18,6 +19,8 @@ const Layout = ({ children }) => {
     router.pathname === "/topartists" && isOnTopArtistsPage;
 
   return (
+    <>
+    <Toaster/>
     <div className={styles.container}>
       <Sidebar mobileMenuOpen={mobileMenuOpen} onClick={toggleMobileMenu} />
       <div className={styles.heroWrap}>
@@ -26,6 +29,7 @@ const Layout = ({ children }) => {
       </div>
       <Controller />
     </div>
+    </>
   );
 };
 //  bg-[#4A0D67] 
