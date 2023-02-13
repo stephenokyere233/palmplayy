@@ -6,6 +6,7 @@ import NotFound from "../../pages/_error";
 import GenreTags from "./GenreTags";
 import { AppContext } from "../../context/context";
 import { useRouter } from "next/router";
+import useGreetings from "../../hooks/useGreetings";
 
 const Hero = ({ discover, isFetching, error }) => {
   const router = useRouter();
@@ -21,23 +22,26 @@ const Hero = ({ discover, isFetching, error }) => {
     }
   }
 
-  const date = new Date();
-  const hours = date.getHours();
-  let welcomeText;
-  if (hours < 12) {
-    welcomeText = `good morning`;
-  } else if (hours >= 12 && hours <= 16) {
-    welcomeText = "good afternoon";
-  } else if (hours > 16) {
-    welcomeText = "good evening";
-  }
+  // const date = new Date();
+  // const hours = date.getHours();
+  // let welcomeText;
+  // if (hours < 12) {
+  //   welcomeText = `good morning`;
+  // } else if (hours >= 12 && hours <= 16) {
+  //   welcomeText = "good afternoon";
+  // } else if (hours > 16) {
+  //   welcomeText = "good evening";
+  // }
+
+  const {greeting}=useGreetings()
+
   if (error) return <NotFound />;
   return (
     <div className="">
       <header className={styles.wrapper}>
         <div className="flex justify-between">
           {session ? (
-            <h2 className={`capitalize`}>{`${welcomeText} , ${username}!`}</h2>
+            <h2 className={`capitalize`}>{`${greeting} , ${username}!`}</h2>
           ) : (
             <h2 className="">Have a good time 😉</h2>
           )}

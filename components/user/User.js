@@ -25,7 +25,7 @@ const User = () => {
           priority
         />
       ) : (
-        <button onClick={() => signIn()} className={styles.signInBtn}>
+        <button onClick={() => signIn("google")} className={styles.signInBtn}>
           Sign in
         </button>
       )}
